@@ -5,6 +5,6 @@ VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handy
 ("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
 ("Pest Control");
 
-INSERT INTO businesses (business_name, categoryId)
-VALUES ("Pauls Painting Services", 2), ("Megan's Mongolian Messages", 9), ("Ciara's Cleaning Services", 1), 
-("Patricia's Personal Training"), ("Craig's Carpet Cleaning", 5), ("Graham's Gardening", 10), ("Erin's Electricity",11);
+INSERT INTO businesses (categoryId, business_name)
+VALUES (2, "Pauls Painting Services"), (7, "Megan's Mongolian Messages"), (1, "Ciara's Cleaning Services"), 
+(9, "Patricia's Personal Training"), (5, "Craig's Carpet Cleaning"), (10, "Graham's Gardening"), (11, "Erin's Electricity");

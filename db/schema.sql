@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS categories(
 
 CREATE TABLE IF NOT EXISTS businesses(
     businessId INT AUTO_INCREMENT,
+    categoryId INT NOT NULL,
     business_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId),
     PRIMARY KEY (businessId)
@@ -25,6 +26,9 @@ CREATE TABLE IF NOT EXISTS businesses(
 
 CREATE TABLE IF NOT EXISTS jobs(
     jobId INT AUTO_INCREMENT,
+    userId INT NOT NULL,
+    businessId INT NOT NULL,
+    categoryId INT NOT NULL,
     rating INT,
     review VARCHAR(255),
     cost DECIMAL (10,2) NOT NULL,
