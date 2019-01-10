@@ -1,0 +1,25 @@
+{
+  "name": "gig-getter",
+  "version": "1.0.0",
+  "description": "Project 2: Gig Getter is an application that links customers to contractors",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparkins/gig-getter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sparkins/gig-getter/issues"
+  },
+  "homepage": "https://github.com/sparkins/gig-getter#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}
