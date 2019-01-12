@@ -52,3 +52,28 @@ module.exports = function (app) {
   });
 
 }
+
+// Sign Up Form Data
+app.get('/signup', function(req, res){
+  connection.query("INSERT INTO users (username, email, password_hash, isABusiness", [req.query.username, req.query.email, req.query.pass, req.query.bus],
+  function(err, results, fields){
+    if(err) console.log('there was an error');
+    res.redirect('/start')
+  })
+})
+
+
+//log in form data
+//name for email = req.query.emaillogin
+//name for password = req.query.passlogin
+
+
+
+
+
+//if the user posts an ad
+app.get("/createad", function(req, res){
+  //insert into categories: req.query.title
+  //insert into [NEED TO MAKE TABLE COLUMN FOR THIS DATA, PREFERABLY SAME TABLE AS THE JOB TITLE/CATEGORY] req.query.jobdescription
+  //job description is a block of text rather than a short string, so should use TEXT or something other than VARCHAR in the table
+})
