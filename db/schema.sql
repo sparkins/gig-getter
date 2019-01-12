@@ -4,6 +4,7 @@ USE giggetter_db;
 
 CREATE TABLE IF NOT EXISTS users(
     userId INT AUTO_INCREMENT,
+    userName VARCHAR(50) NOT NULL,
 	email VARCHAR(255) NOT NULL UNIQUE,
 	password_hash VARCHAR(255) NOT NULL,
     isABusiness BOOLEAN NOT NULL DEFAULT false,
@@ -20,6 +21,7 @@ CREATE TABLE IF NOT EXISTS businesses(
     businessId INT AUTO_INCREMENT,
     categoryId INT NOT NULL,
     business_name VARCHAR(50) NOT NULL,
+    business_bio VARCHAR (255),
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId),
     PRIMARY KEY (businessId)
 ); 
