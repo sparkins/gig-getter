@@ -1,12 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gig-Getter Home Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Monoton|Faster+One" rel="stylesheet">
+    <title>Giggit</title>
 </head>
+
+<style>
+    * {
+        background: url('swish.jpg') no-repeat fixed;
+    }
+
+    #welcomeHead {
+        font-family: 'gruppo', cursive;
+        font-size: 30px;
+        margin-bottom: -40px;
+        margin-top: -3px;
+        color: rgb(99, 117, 131);
+        text-shadow: 2px 2px rgb(208, 219, 223);
+        font-weight: bold;
+
+    }
+
+    #giggitHead {
+        font-family: 'gruppo', cursive;
+        font-size: 70px;
+        color: rgb(239, 244, 248);
+        text-shadow: 2px 2px rgb(88, 145, 167);
+        margin-bottom: -20px;
+        font-weight: bold;
+    }
+
+    #puzzleimage {
+        float: left;
+        margin-left: 80px;
+    }
+
+    #signUp {
+        float: right;
+        color: rgb(16, 71, 107);
+        background: white;
+        margin-right: 100px;
+    }
+
+    #signupform {
+        border: 4px ridge white;
+        background: white;
+        color: white;
+        width: 400px;
+        height: 295px;
+        font-family: 'gruppo', cursive;
+        padding: 10px;
+        font-size: 25px;
+    }
+
+    .instruction, #skip {
+        background: white;
+        color: black;
+        font-family: 'gruppo', cursive;
+    }
+
+    .inputfield {
+        width: 340px;
+        padding-left: 30px;
+        padding-right:30px;
+    }
+
+
+    .btn {
+        background: rgb(214, 249, 253);
+        color: darkblue;
+        width: 100px;
+        float: right;
+        margin: 10px;
+    }
+
+    .btn:hover {
+        background: rgb(123, 230, 241);
+        color: darkblue;
+    }
+
+    #orloginInstruction {
+        color: rgb(23, 27, 85);
+        font-size: 20px;
+        background: rgb(185, 247, 255);
+        font-family: 'gruppo', cursive;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+
+    #login {
+        border: 4px ridge white;
+        background: white;
+        color: white;
+        width: 400px;
+        height: 140px;
+        font-family: 'gruppo', cursive;
+        padding: 10px;
+        font-size: 25px;
+    }
+
+
+    
+
+</style>
+
+
+
 <body>
-    <h1>Gig-Getter !!!</h1>
+    <center>
+        <header>
+
+            <h5 id='welcomeHead'>Welcome To</h5>
+            <h2 id='giggitHead'>GigGit</h2>
+
+        </header>
+    </center>
+
+    <!-- image float left -->
+    <img src='puzzle.gif'>
+
+    <!-- sign up form floats right-->
+    <div id='signUp'>
+        <form id='signupform' action='/signup' method='GET'>
+            <div id='nameInstructions' class='instruction'>Name </div>
+            <input id='username' name='username' type='text' class='inputfield'><br>
+            <div id='emailInstructions' class='instruction'>Email </div>
+            <input id='email' name='email' type='email' class='inputfield'><br>
+            <div id='phoneInstructions' class='instruction'>Phone XXX-XXX-XXXX</div>
+            <input id='phone' name='phone' type='tel' class='inputfield'><br>
+            <div id='picInstructions' class='instruction'>Choose A Profile Picture</div><input id='pic' name='pic' type='file'
+                class='inputfield'><br>
+            <div id='passInstructions' class='instruction'>Create A Secure Password</div>
+            <input id='pass' name='pass' type='password' class='inputfield'><br>
+            <input type='submit' id='done' name='done' value='Get Started' class='btn'>
+        </form>
+
+        <!-- div to direct user to login form if already a member -->
+        <div id='orloginInstruction'>Already A Member? Login</div>
+
+        <!-- form to log in floats right -->
+
+        <form id='login' action='signin' method="GET">
+            <div id='logEmail' class='instruction'>Email: </div><input type='email' name='emaillogin' id='emaillogin'
+                class='inputfield'><br>
+            <div id='logPass' class='instruction'>Password: </div><input type='password' name='passlogin' id='passlogin'
+                class='inputfield'><br>
+                <a href='/start.html' id='skip'>Skip This Step</a>
+            <input type='submit' id='ok' name='ok' value='OK' class='btn'>
+            
+        </form>
+    </div>
+
+   
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+
+    </script>
+
 </body>
+
 </html>
