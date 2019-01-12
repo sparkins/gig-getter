@@ -71,3 +71,9 @@ app.get('/signup', function(req, res){
 
 
 
+//if the user posts an ad
+app.get("/createad", function(req, res){
+  //insert into categories: req.query.title
+  //insert into [NEED TO MAKE TABLE COLUMN FOR THIS DATA, PREFERABLY SAME TABLE AS THE JOB TITLE/CATEGORY] req.query.jobdescription
+  //job description is a block of text rather than a short string, so should use TEXT or something other than VARCHAR in the table
+})

@@ -17,4 +17,17 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/home.html'))
   });
 
+  app.get('/findcontractor', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/findcontractor.html'));
+  })
+
+  app.get('/postad', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/postad.html'));
+  })
+
+  app.get('/start', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/start.html'));
+  })
+
 }
+
