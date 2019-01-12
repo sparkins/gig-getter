@@ -52,3 +52,22 @@ module.exports = function (app) {
   });
 
 }
+
+// Sign Up Form Data
+app.get('/signup', function(req, res){
+  connection.query("INSERT INTO users (username, email, password_hash, isABusiness", [req.query.username, req.query.email, req.query.pass, req.query.bus],
+  function(err, results, fields){
+    if(err) console.log('there was an error');
+    res.redirect('/start')
+  })
+})
+
+
+//log in form data
+//name for email = req.query.emaillogin
+//name for password = req.query.passlogin
+
+
+
+
+

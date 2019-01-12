@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Monoton|Faster+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Monoton|Faster+One|Zilla+Slab+Highlight" rel="stylesheet">
     <title>Giggit</title>
 </head>
 
 <style>
     * {
-        background: url('swish.jpg') no-repeat fixed;
+        background: url('bluewave.jpg') no-repeat fixed;
     }
 
     #welcomeHead {
         font-family: 'gruppo', cursive;
         font-size: 30px;
         margin-bottom: -40px;
-        margin-top: -3px;
+        margin-top: 1px;
         color: rgb(99, 117, 131);
         text-shadow: 2px 2px rgb(208, 219, 223);
         font-weight: bold;
@@ -26,7 +26,7 @@
     }
 
     #giggitHead {
-        font-family: 'gruppo', cursive;
+        font-family: 'Zilla Slab Highlight', cursive;
         font-size: 70px;
         color: rgb(239, 244, 248);
         text-shadow: 2px 2px rgb(88, 145, 167);
@@ -34,9 +34,10 @@
         font-weight: bold;
     }
 
-    #puzzleimage {
+    #image {
         float: left;
         margin-left: 80px;
+        margin-top: 330px;
     }
 
     #signUp {
@@ -51,7 +52,7 @@
         background: white;
         color: white;
         width: 400px;
-        height: 295px;
+        height: 300px;
         font-family: 'gruppo', cursive;
         padding: 10px;
         font-size: 25px;
@@ -67,6 +68,7 @@
         width: 340px;
         padding-left: 30px;
         padding-right:30px;
+        margin-bottom: 15px;
     }
 
 
@@ -90,6 +92,8 @@
         font-family: 'gruppo', cursive;
         padding: 10px;
         font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 
 
@@ -98,13 +102,25 @@
         background: white;
         color: white;
         width: 400px;
-        height: 140px;
+        height: 160px;
         font-family: 'gruppo', cursive;
         padding: 10px;
         font-size: 25px;
     }
 
+    .isabus {
+        color: black;
+        font-size: 15px;
+        margin-bottom: 15px;
 
+    }
+
+    #isabusiness {
+        border: 2px ridge white;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
     
 
 </style>
@@ -122,41 +138,53 @@
     </center>
 
     <!-- image float left -->
-    <img src='puzzle.gif'>
+    <img id='image' src='workers.png'>
 
     <!-- sign up form floats right-->
     <div id='signUp'>
         <form id='signupform' action='/signup' method='GET'>
+            <!-- takes username as req.query.username-->
             <div id='nameInstructions' class='instruction'>Name </div>
             <input id='username' name='username' type='text' class='inputfield'><br>
+            <!-- takes email as req.query.email -->
             <div id='emailInstructions' class='instruction'>Email </div>
             <input id='email' name='email' type='email' class='inputfield'><br>
-            <div id='phoneInstructions' class='instruction'>Phone XXX-XXX-XXXX</div>
-            <input id='phone' name='phone' type='tel' class='inputfield'><br>
-            <div id='picInstructions' class='instruction'>Choose A Profile Picture</div><input id='pic' name='pic' type='file'
-                class='inputfield'><br>
-            <div id='passInstructions' class='instruction'>Create A Secure Password</div>
+            <!-- takes profile picture, not working in backend, not a priority in project -->
+            <!-- <div id='picInstructions' class='instruction'>Choose a profile picture</div><input id='pic' name='pic' type='file'
+                class='inputfield'><br> -->
+
+                <!-- returns boolean isABusiness as name=req.query.bus -->
+            <div id='isabusiness' class='instruction'>
+                Are you a business owner?<br>
+                <input type='radio' name='bus' id='buss' value='true'><label for='buss' class='isabus'>YES</label>
+                <input type='radio' name='bus' id='buss' value='false'><label for='buss' class='isabus'>NO</label><br>
+            </div>
+            <!-- takes a password as name=req.query.pass -->
+            <div id='passInstructions' class='instruction'>Create a secure password</div>
             <input id='pass' name='pass' type='password' class='inputfield'><br>
+            <!-- submit button directs user to route /signup in apiroutes.js -->
             <input type='submit' id='done' name='done' value='Get Started' class='btn'>
         </form>
 
         <!-- div to direct user to login form if already a member -->
         <div id='orloginInstruction'>Already A Member? Login</div>
 
-        <!-- form to log in floats right -->
 
+
+        <!-- form to log in, floats right -->
         <form id='login' action='signin' method="GET">
+            <!-- takes email and password as req.query.emaillogin and req.query.passlogin -->
             <div id='logEmail' class='instruction'>Email: </div><input type='email' name='emaillogin' id='emaillogin'
                 class='inputfield'><br>
             <div id='logPass' class='instruction'>Password: </div><input type='password' name='passlogin' id='passlogin'
                 class='inputfield'><br>
-                <a href='/start.html' id='skip'>Skip This Step</a>
+
+                <!-- Skip to next page without login, may take this out in the future but we can use it to navigate while we are building the site -->
+            <a href='/start.html' id='skip'>Skip This Step</a>
             <input type='submit' id='ok' name='ok' value='OK' class='btn'>
-            
+
         </form>
     </div>
-
-   
 
 
 
