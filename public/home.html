@@ -11,7 +11,8 @@
 
 <style>
     * {
-        background: url('bluewave.jpg') no-repeat fixed;
+        background: url('../backgroundimage') no-repeat fixed;
+        background-size: cover;
     }
 
     #welcomeHead {
@@ -138,17 +139,17 @@
     </center>
 
     <!-- image float left -->
-    <img id='image' src='workers.png'>
+    <img id='image' src='/workersimage'>
 
     <!-- sign up form floats right-->
     <div id='signUp'>
         <form id='signupform' action='/signup' method='GET'>
             <!-- takes username as req.query.username-->
             <div id='nameInstructions' class='instruction'>Name </div>
-            <input id='username' name='username' type='text' class='inputfield'><br>
+            <input id='username' name='username' type='text' class='inputfield' required><br>
             <!-- takes email as req.query.email -->
             <div id='emailInstructions' class='instruction'>Email </div>
-            <input id='email' name='email' type='email' class='inputfield'><br>
+            <input id='email' name='email' type='email' class='inputfield' required><br>
             <!-- takes profile picture, not working in backend, not a priority in project -->
             <!-- <div id='picInstructions' class='instruction'>Choose a profile picture</div><input id='pic' name='pic' type='file'
                 class='inputfield'><br> -->
@@ -156,12 +157,12 @@
                 <!-- returns boolean isABusiness as name=req.query.bus -->
             <div id='isabusiness' class='instruction'>
                 Are you a business owner?<br>
-                <input type='radio' name='bus' id='buss' value='true'><label for='buss' class='isabus'>YES</label>
-                <input type='radio' name='bus' id='buss' value='false'><label for='buss' class='isabus'>NO</label><br>
+                <input type='radio' name='bus' id='bussyes' value='true'><label for='bussyes' class='isabus'>YES</label>
+                <input type='radio' name='bus' id='bussno' value='false'><label for='bussno' class='isabus'>NO</label><br>
             </div>
             <!-- takes a password as name=req.query.pass -->
             <div id='passInstructions' class='instruction'>Create a secure password</div>
-            <input id='pass' name='pass' type='password' class='inputfield'><br>
+            <input id='pass' name='pass' type='password' class='inputfield' required><br>
             <!-- submit button directs user to route /signup in apiroutes.js -->
             <input type='submit' id='done' name='done' value='Get Started' class='btn'>
         </form>
@@ -180,7 +181,7 @@
                 class='inputfield'><br>
 
                 <!-- Skip to next page without login, may take this out in the future but we can use it to navigate while we are building the site -->
-            <a href='/start.html' id='skip'>Skip This Step</a>
+            <a href='/start' id='skip'>Skip This Step</a>
             <input type='submit' id='ok' name='ok' value='OK' class='btn'>
 
         </form>

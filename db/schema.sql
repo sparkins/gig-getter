@@ -14,8 +14,6 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS categories(
     categoryId INT AUTO_INCREMENT,
     category_name VARCHAR(255) NOT NULL,
-    -- possibly add post text/content, so that ad category and ad body can be submitted in one form into a db table  
-    -- something like [description TEXT NOT NULL,]
     PRIMARY KEY (categoryId)
 ); 
 
