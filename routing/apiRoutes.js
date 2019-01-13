@@ -53,6 +53,14 @@ module.exports = function (app) {
 
 }
 
+//route for business and category info ----added by Alyssa. Please join the users table as well if you can so I can acess any data from any table with this route
+app.get('/allinfo', function (req, res){
+  connection.query('SELECT * FROM businesses LEFT JOIN categories ON categories.categoryId=businesses.categoryId', function(error, results, fields){
+    if(error) throw error;
+    res.json(results);
+  })
+})
+
 // Sign Up Form Data
 app.get('/signup', function(req, res){
   connection.query("INSERT INTO users (username, email, password_hash, isABusiness", [req.query.username, req.query.email, req.query.pass, req.query.bus],
