@@ -29,5 +29,17 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/start.html'));
   })
 
+  app.get('/backgroundimage', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/bluewave.jpg'));
+  })
+
+  app.get('/workersimage', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/workers.png'));
+  })
+
+  app.get('/gifimage', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/blue.gif'));
+  })
+
 }
 

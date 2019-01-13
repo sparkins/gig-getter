@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS businesses(
     businessId INT AUTO_INCREMENT,
     categoryId INT NOT NULL,
     business_name VARCHAR(50) NOT NULL,
+    -- business bio
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId),
     PRIMARY KEY (businessId)
 ); 
