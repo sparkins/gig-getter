@@ -146,10 +146,10 @@
         <form id='signupform' action='/signup' method='GET'>
             <!-- takes username as req.query.username-->
             <div id='nameInstructions' class='instruction'>Name </div>
-            <input id='username' name='username' type='text' class='inputfield'><br>
+            <input id='username' name='username' type='text' class='inputfield' required><br>
             <!-- takes email as req.query.email -->
             <div id='emailInstructions' class='instruction'>Email </div>
-            <input id='email' name='email' type='email' class='inputfield'><br>
+            <input id='email' name='email' type='email' class='inputfield' required><br>
             <!-- takes profile picture, not working in backend, not a priority in project -->
             <!-- <div id='picInstructions' class='instruction'>Choose a profile picture</div><input id='pic' name='pic' type='file'
                 class='inputfield'><br> -->
@@ -162,7 +162,7 @@
             </div>
             <!-- takes a password as name=req.query.pass -->
             <div id='passInstructions' class='instruction'>Create a secure password</div>
-            <input id='pass' name='pass' type='password' class='inputfield'><br>
+            <input id='pass' name='pass' type='password' class='inputfield' required><br>
             <!-- submit button directs user to route /signup in apiroutes.js -->
             <input type='submit' id='done' name='done' value='Get Started' class='btn'>
         </form>

@@ -26,8 +26,9 @@
     }
 
     #octopus {
-        width: 200px;
+        width: 150px;
         margin-bottom: 2x;
+        margin-top: 10px;
     }
 
 
@@ -35,6 +36,7 @@
         color: rgb(16, 71, 107);
         border: 4px ridge white;
         width: 400px;
+        padding: 10px;
         
     }
 
@@ -79,7 +81,7 @@
         font-family: 'gruppo', cursive;
     } */
 
-    /* #okgig {
+    #okgig {
         background: rgb(214, 249, 253);
         color: darkblue;
         width: 100px;
@@ -88,7 +90,7 @@
     #okgig:hover {
         background: rgb(123, 230, 241);
         color: darkblue;
-    } */
+    }
 
     #formInstruction {
         font-family: 'gruppo', cursive;
@@ -138,6 +140,8 @@
 
             <!-- </form> -->
         </div>
+
+        <!-- <input type='submit' for='createGig' value='OK'> -->
     </center>
 
     
@@ -152,7 +156,8 @@ $.ajax({
 
     console.log(data);
 
-    var $form;
+    var $form = $("<form>");
+    var okgig = $("<br><button type='submit' id='okgig'>OK</button><br>");
     var $input;
     var $label;
 
@@ -160,7 +165,7 @@ $.ajax({
 
         $input = $("<input>");
         $label = $("<label>");
-        $form = $("<form>");
+        
 
         $input.attr("type", 'radio');
         $input.attr('name', 'title');
@@ -171,8 +176,11 @@ $.ajax({
         $label.html(data[i].category_name);
         $label.attr('for', data[i].category_name);
 
-        $form.html($input);
-        $form.append($label);
+        
+        
+        $form.append($input, $label, "<br>");
+        $form.append(okgig);
+        // $form.append($label);
         $form.attr('id', 'createGig');
         $form.attr('action', '/');
         $form.attr('method', 'GET');

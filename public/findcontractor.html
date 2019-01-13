@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Monoton|Faster+One" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GigGit</title>
+</head>
+
+<style>
+    * {
+        background: url('/backgroundimage') no-repeat fixed;
+    }
+
+    #giggitHead {
+        font-family: 'gruppo', cursive;
+        font-size: 70px;
+        color: rgb(239, 244, 248);
+        text-shadow: 2px 2px rgb(88, 145, 167);
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    #gif {
+        width: 60px;
+        padding: 10px;
+    }
+
+
+    .entireUser {
+        border: 1px ridge rgb(183, 228, 236);
+        border: 2px ridge black;
+        width: 500px;
+        background-color: white;
+        margin: 10px;
+    }
+
+    .businessName, .userInfo {
+        color: black;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: "Gruppo", cursive;
+        padding: 5px;
+        margin: 2px;
+        background: rgb(183, 228, 236);
+        border: 2px 2px black;
+        text-shadow: 2px 2px white;
+    }
+
+
+    .jobTitle {
+        color: rgb(22, 22, 252);
+        font-size: 20px;
+        font-family: "Gruppo", cursive;
+        padding: 5px;
+        margin-top: 5px;
+        background: white;
+    }
+
+    .desc {
+        color: rgb(7, 23, 29);
+        font-size: 18px;
+        font-family: "Gruppo", cursive;
+        font-weight: bold;
+        padding: 5px;
+        background: white;
+    }
+
+    .contactInfo {
+        color: rgb(183, 228, 236);
+        background: black;
+        text-shadow: 0px 1px rgb(215, 215, 231);
+        font-size: 20px;
+        font-family: 'Gruppo', cursive;
+        font-weight: bold;
+        padding: 5px;
+    }
+
+    #searchInstruction {
+        color: white;
+        font-family: 'Gruppo', cursive;
+    }
+</style>
+
+
+<body>
+
+    <center>
+        <header>
+            <h2 id='giggitHead'>GigGit</h2>
+            <img src='/gifimage' id='gif'>
+        </header>
+
+        <div id='searchDiv'>Search: </div>
+
+        <div id='content'></div>
+
+    </center>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+
+        //need route to show all available gigs in #content div. route should join users to the categories, business tables
+        //should also join 'jobs' table at some point to access reveiws
+        //currently tried using 'allinfo' but the route is having trouble connecting for some reason
+
+        // $.ajax({
+        //     url: "/allinfo",
+        //     method: "GET"
+        // }).then(function(data){
+        //     console.log(data);
+        //     var $entireuserdiv;
+        //     // var $username;
+        //     var $businessname;
+        //     var $category;
+        //     var $description;
+        //     // var $email;
+
+        //     for (var i=0; i < data.length; i++){
+            
+        //     console.log(data[i].business_name);
+
+        //         $entireuserdiv = $("<div>");
+        //         // $username = $("<div>");
+        //         $businessname = $("<div>");
+        //         $category = $("<div>");
+        //         $description = $("<div>");
+        //         // $email = $("<div>");
+
+        //         $entireuserdiv.attr('class', 'entireUser');
+                
+        //         $businessname.attr('class', 'businessName');
+        //         $businessname.text(data[i].business_name);
+
+        //         // $username.attr('class', 'userInfo');
+        //         // $username.text(data[i].username);
+
+        //         $category.attr('class', 'jobTitle');
+        //         $category.text(data[i].category_name);
+
+        //         $description.attr('class', 'desc');
+        //         $description.text(data[i].business_bio);
+
+        //         // $email.attr('class', 'contactInfo');
+        //         // $email.text(data[i].email);
+
+        //         $entireuserdiv.append($businessname, "<br>", $category, "<br>", $description);
+
+        //         $("#content").append($entireuserdiv);
+        //     }
+        // })
+
+
+        //route to show categories in drop down search menu
+        $.ajax({
+            url: '/categories',
+            method: 'GET'
+        }).then(function (data) {
+            var count = 0;
+            var $option;
+
+            $select = $("<select>");
+            $form = $("<form>");
+
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].category_name);
+
+                $option = $("<option>");
+                $option.attr('value', data[i].category_name);
+                $option.text(data[i].category_name);
+
+                $select.append($option);
+
+                $form.append($select);
+
+                $("#searchDiv").append($form);
+            }
+
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
