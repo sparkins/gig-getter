@@ -1,28 +1,14 @@
 // Require external libraries
-var express = require('express');
-var app = express();
-var path = require('path');
-// var mysql = require('mysql');
+var express         = require("express");
+var bodyParser      = require("body-parser");
+var methodOverride  = require("method-override");
+var path            = require('path');
+
+var app             = express();
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(methodOverride());
 var connection = require('../controllers/connections.js');
-
-// Initializes the connection variable to sync with a MySQL database
-// if (process.env.JAWSDB_URL) {
-//   connection = mysql.createConnection(process.env.JAWSDB_URL);
-// } else {
-//   connection = mysql.createConnection({
-//   host: "localhost",
-
-//   // Your port; if not 3306
-//   port: 3306,
-
-//   // Your username
-//   user: "root",
-
-//   // Your password
-//   password: "password",
-//   database: "friendfinder"
-// });
-// }
 
 // Connecting apiRoutes to server.js, making sure routes are available when server.js is running
 module.exports = function (app) {
@@ -66,10 +52,6 @@ app.get('/signup', function(req, res){
 //log in form data
 //name for email = req.query.emaillogin
 //name for password = req.query.passlogin
-
-
-
-
 
 //if the user posts an ad
 app.get("/createad", function(req, res){
