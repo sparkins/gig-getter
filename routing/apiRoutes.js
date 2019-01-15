@@ -60,6 +60,16 @@ module.exports = function (app) {
             })
     })
 
+    //route for providing the average rating for a business
+    app.get('/businesses/ave-rating/:id', function (req, res) {
+        connection.query("SELECT b.businessId, b.business_name, j.rating FROM businesses b LEFT JOIN jobs j ON j.businessId=b.businessId WHERE b,businessId = 'id';"
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                res.json(results);
+            })
+    })
+
     // Sign Up Form Data
     app.get('/signup', function (req, res) {
         connection.query("INSERT INTO users (username, email, password_hash, isABusiness", [req.query.username, req.query.email, req.query.pass, req.query.bus],
