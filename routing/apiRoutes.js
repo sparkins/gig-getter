@@ -142,6 +142,16 @@ module.exports = function (app) {
             })
     })
 
+    //route for providing all the businesses for a specific category
+    app.get('/categories/:categoryId', function (req, res) {
+        connection.query("SELECT c.categoryId, c.category_name, b.businessId, b.business_name, b.business_bio FROM categories c LEFT JOIN businesses b ON c.categoryId=b.categoryId WHERE c.categoryId = ?", [req.params.categoryId]
+            , function (error, results) {
+                // console.log(results[0].rating);
+                if (error) throw error;
+                res.send(results);
+            })
+    })
+
     //route for providing the average rating for a business
     app.get('/businesses/rating/:businessId', function (req, res) {
         connection.query("SELECT b.businessId, b.business_name, j.rating FROM businesses b LEFT JOIN jobs j ON j.businessId=b.businessId WHERE b.businessId = ?", [req.params.businessId]
