@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Zilla+Slab+Highlight" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <title>GigGit</title>
 </head>
-	<body>	
-		{{{ body }}}
-	</body>
+
+<style>
+    #image {
+        float: left;
+        margin-left: 20%;
+        margin-top: 8%;
+    }
+
+</style>
+
+<body>
+
+    <div class="row"><div id='login'> Welcome {{user}}!</div></div>
+
+    <center>
+        <header>
+            <h2 id='giggitHead'>GigGit</h2>
+        </header>
+    </center>
+    {{{ body }}}
+
+     <img id='image' src='/workersimage'>
+</body>
+
 </html>
