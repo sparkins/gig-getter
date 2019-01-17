@@ -29,33 +29,36 @@
     }
 
 
-    /* .entireUser {
+    .entireUser {
         border: 1px ridge rgb(183, 228, 236);
-        border: 2px ridge black;
+        border: 2px ridge white;
         width: 500px;
         background-color: white;
         margin: 10px;
     }
 
     .businessName, .userInfo {
-        color: black;
+        color: rgb(9, 17, 39);
         font-size: 30px;
         font-weight: bold;
         font-family: "Gruppo", cursive;
         padding: 5px;
         margin: 2px;
         background: rgb(183, 228, 236);
-        border: 2px 2px black;
+        width: 480px;
+        border: 2px 2px white;
         text-shadow: 2px 2px white;
     }
 
 
     .jobTitle {
-        color: rgb(22, 22, 252);
+        color: rgb(103, 103, 182);
         font-size: 20px;
         font-family: "Gruppo", cursive;
-        padding: 5px;
-        margin-top: 5px;
+        /* padding: 5px;
+        margin-top: 5px; */
+        height: 20px;
+        width: 480px;
         background: white;
     }
 
@@ -65,7 +68,8 @@
         font-family: "Gruppo", cursive;
         font-weight: bold;
         padding: 5px;
-        background: white;
+        width: 480px;
+        background: rgb(224, 245, 247);
     }
 
     .contactInfo {
@@ -76,7 +80,7 @@
         font-family: 'Gruppo', cursive;
         font-weight: bold;
         padding: 5px;
-    } */
+    }
 
     #searchDiv { 
         font-family: 'gruppo', cursive;
@@ -138,65 +142,25 @@
         crossorigin="anonymous"></script>
     <script>
 
-        //need route to show all available gigs in #content div. route should join users to the categories, business tables
-        //should also join 'jobs' table at some point to access reveiws
-        //currently tried using 'allinfo' but the route is having trouble connecting for some reason
-
-        // $.ajax({
-        //     url: "/allinfo",
-        //     method: "GET"
-        // }).then(function(data){
-        //     console.log(data);
-        //     var $entireuserdiv;
-        //     // var $username;
-        //     var $businessname;
-        //     var $category;
-        //     var $description;
-        //     // var $email;
-
-        //     for (var i=0; i < data.length; i++){
-            
-        //     console.log(data[i].business_name);
-
-        //         $entireuserdiv = $("<div>");
-        //         // $username = $("<div>");
-        //         $businessname = $("<div>");
-        //         $category = $("<div>");
-        //         $description = $("<div>");
-        //         // $email = $("<div>");
-
-        //         $entireuserdiv.attr('class', 'entireUser');
-                
-        //         $businessname.attr('class', 'businessName');
-        //         $businessname.text(data[i].business_name);
-
-        //         // $username.attr('class', 'userInfo');
-        //         // $username.text(data[i].username);
-
-        //         $category.attr('class', 'jobTitle');
-        //         $category.text(data[i].category_name);
-
-        //         $description.attr('class', 'desc');
-        //         $description.text(data[i].business_bio);
-
-        //         // $email.attr('class', 'contactInfo');
-        //         // $email.text(data[i].email);
-
-        //         $entireuserdiv.append($businessname, "<br>", $category, "<br>", $description);
-
-        //         $("#content").append($entireuserdiv);
-        //     }
-        // })
-
 
         //route to show categories in drop down search menu
         $.ajax({
-            url: '/categories',
+            url: '/allinfo',
             method: 'GET'
         }).then(function (data) {
             var count = 0;
-            var $option;
+            
 
+            //ALL BUSINESSES
+            var $entireuserdiv;
+            // var $username;
+            var $businessname;
+            var $category;
+            var $description;
+            // var $email;
+
+            //SEARCH BAR
+            var $option;
             $select = $("<select>");
             $form = $("<form>");
 
@@ -215,6 +179,51 @@
                 $form.attr('id', 'searchForm');
 
                 $("#searchDiv").append($form);
+
+
+
+
+
+
+
+
+                    //info to display all the businesses
+                    console.log(data);
+
+
+         
+            
+            console.log(data[i].business_name);
+
+                $entireuserdiv = $("<div>");
+                // $username = $("<div>");
+                $businessname = $("<div>");
+                $category = $("<div>");
+                $description = $("<div>");
+                // $email = $("<div>");
+
+                $entireuserdiv.attr('class', 'entireUser');
+                
+                $businessname.attr('class', 'businessName');
+                $businessname.text(data[i].business_name);
+
+                // $username.attr('class', 'userInfo');
+                // $username.text(data[i].username);
+
+                $category.attr('class', 'jobTitle');
+                $category.text(data[i].category_name);
+
+                $description.attr('class', 'desc');
+                $description.text(data[i].business_bio);
+
+                // $email.attr('class', 'contactInfo');
+                // $email.text(data[i].email);
+
+                $entireuserdiv.append($businessname, "<br>", $category, "<br>", $description);
+
+                $("#content").append($entireuserdiv);
+
+
             }
 
 
