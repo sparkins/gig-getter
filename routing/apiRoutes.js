@@ -200,6 +200,15 @@ module.exports = function (app) {
             })
     })
 
+    // post route to create a new job
+    app.post('/jobs/create-job/:userId/:businessId/:categoryId', function (req, res) {
+        connection.query("INSERT INTO jobs (userId, businessId, categoryId, jobStatus) VALUES (?, ?, ?, 1)", [req.params.userId, req.params.businessId, req.params.categoryId]
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                res.json("New Job Added for "+ req.params.userId);
+            })
+    })
 
 }
 //log in form data
@@ -207,6 +216,6 @@ module.exports = function (app) {
 //name for password = req.query.passlogin
 
 //if the user posts an ad
-app.get("/createad", function (req, res) {
+app.post("/createad", function (req, res) {
 
 })

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS jobs(
     categoryId INT NOT NULL,
     rating INT,
     review VARCHAR(255),
-    cost DECIMAL (10,2) NOT NULL,
+    cost DECIMAL (10,2),
     jobStatus VARCHAR (25) NOT NULL,
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (businessId) REFERENCES businesses(businessId),
