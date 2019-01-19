@@ -17,6 +17,14 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/home.html'))
   });
 
+  app.get('/business-home', function(req, res){
+    res.render(path.join(__dirname, '/../views/layouts/businesshome.handlebars'));
+  })
+
+  app.get('/user-home', function(req, res){
+    res.render(path.join(__dirname, '/../views/layouts/userhome.handlebars'));
+  })
+
   app.get('/findcontractor', function(req, res){
     res.sendFile(path.join(__dirname, '/../public/findcontractor.html'));
   })
