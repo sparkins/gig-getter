@@ -180,6 +180,25 @@ module.exports = function (app) {
             })
     })
 
+    //route for providing a list of jobs for a specific business
+    app.get('/businesses/jobs/:businessId', function (req, res) {
+        connection.query("SELECT b.businessId, b.business_name, j.jobId, j.rating, j.review, j.cost, j.jobStatus FROM businesses b LEFT JOIN jobs j ON b.businessId=j.businessId WHERE b.businessId = ?", [req.params.businessId]
+            , function (error, results) {
+                //console.log(results);
+                if (error) throw error;
+                res.json(results);
+            })
+    })
+
+    //route for providing a list of jobs for a specific user
+    app.get('/users/jobs/:userId', function (req, res) {
+        connection.query("SELECT u.userId, u.username, j.jobId, j.rating, j.review, j.cost, j.jobStatus FROM users u LEFT JOIN jobs j ON u.userId=j.userId WHERE u.userId = ?", [req.params.userId]
+            , function (error, results) {
+                //console.log(results);
+                if (error) throw error;
+                res.json(results);
+            })
+    })
 
 
 }
