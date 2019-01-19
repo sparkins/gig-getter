@@ -9,33 +9,70 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 
-    {{!-- <link rel="stylesheet" type="text/css" href="./assets/css/styles.css"> --}}
+    {{!--
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css"> --}}
 
     <title>GigGit</title>
 </head>
 
 <style>
+    * {
+        background: url('../backgroundimage') no-repeat fixed;
+        background-size: cover;
+    }
+
+
+    #giggitHead {
+        font-family: 'Zilla Slab Highlight', cursive;
+        font-size: 70px;
+        color: rgb(239, 244, 248);
+        text-shadow: 2px 2px rgb(88, 145, 167);
+        margin-bottom: -20px;
+        font-weight: bold;
+    }
+
     #image {
         float: left;
         margin-left: 20%;
         margin-top: 8%;
     }
 
+    #loginRow {
+        width: 100%;
+    }
 
-
-        #login {
+    #login {
         font-family: 'gruppo', cursive;
-        font-size: 20px;
-        background: rgb(239, 244, 248);
-        border: 4px 4px ridge blue;
-        color: blue;
-        }
+        font-weight: bold;
+        font-size: 25px;
+        background: white;
+        border-width: 4px;
+        border-style: ridge;
+        border-color: rgb(239, 244, 248);
+        color: rgb(179, 212, 240);
+        margin-right: 20px;
+        float: left;
+        height: 35px;
+        padding: 10px;
+    }
+
+    .iconImage {
+        float: left;
+        height: 30px;
+        padding-right: 15px;
+        padding-left: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
 
 </style>
 
 <body>
 
-    <div class="row"><div id='login'> Welcome {{user}}!</div></div>
+    <div class="row" id='loginRow'>
+        <div id='login'> Welcome {{user}}!<img class='iconImage' src='/icon-search'><img class='iconImage' src='/icon-home'><img class='iconImage' src='/icon-edit'><img class='iconImage' src='/icon-logout'></div>
+    </div>
 
     <center>
         <header>
@@ -44,7 +81,7 @@
     </center>
     {{{ body }}}
 
-     <img id='image' src='/workersimage'>
+    <img id='image' src='/workersimage'>
 </body>
 
 </html>
