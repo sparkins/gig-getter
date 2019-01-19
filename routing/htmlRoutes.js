@@ -49,5 +49,25 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/images/sphere.gif'));
   })
 
+  app.get('/icon-home', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/icon-home.png'));
+  })
+
+
+  app.get('/icon-search', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/icon-search.png'));
+  })
+
+  
+  app.get('/icon-edit', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/icon-edit.png'));
+  })
+
+  app.get('/icon-logout', function(req, res){
+    res.sendFile(path.join(__dirname, '/../public/images/icon-logout.png'));
+  })
+
+
+
 }
 
