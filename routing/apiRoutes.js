@@ -111,6 +111,15 @@ module.exports = function (app) {
             })
     })
 
+    // Get route to get all business info from business, category, jobs and user tables for the business home page
+    app.get('/business/userInfo/:businessId/:userId', function (req, res) {
+        connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.jobStatus, j.cost, u.userId, u.username, u.email FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId WHERE b.businessId = ? && u.userId = ?', [req.params.businessId, req.params.userId]
+            ,function (error, results, fields) {
+                if (error) throw error;
+                res.json(results);
+            })
+    })
+
     //route for providing the average rating for a business
     app.get('/businesses/rating/:businessId', function (req, res) {
         connection.query("SELECT b.businessId, b.business_name, j.rating FROM businesses b LEFT JOIN jobs j ON j.businessId=b.businessId WHERE b.businessId = ?", [req.params.businessId]
@@ -198,13 +207,31 @@ module.exports = function (app) {
     // ************ USER ROUTES ************
     // *************************************
 
-    // get route for /users - display all categories to the browser
+    // get route for /users - display all users to the browser
     app.get('/users', function (req, res) {
         connection.query('SELECT * FROM users', function (error, results, fields) {
             if (error) throw error;
             res.json(results);
         });
     });
+
+    // Get route to get all user info from user, business, category and jobs tables for the users home page
+    app.get('/users/allinfo/:userId', function (req, res) {
+        connection.query('SELECT u.userId, u.username, u.email, j.jobId, j.rating, j.review, j.jobStatus, j.cost, b.businessId, b.business_name, c.categoryId, c.category_name FROM users u LEFT JOIN jobs j ON u.userId=j.userId LEFT JOIN businesses b ON b.businessId=j.businessId LEFT JOIN categories c ON c.categoryId=b.categoryId WHERE u.userId = ?', [req.params.userId]
+            , function (error, results, fields) {
+                if (error) throw error;
+                res.json(results);
+            })
+    })
+
+    // Get route to get all user info from user, business, category and jobs tables for the business profile page (USERS Perspective)
+    app.get('/users/businessInfo/:userId/:businessId', function (req, res) {
+        connection.query('SELECT u.userId, u.username, u.email, j.jobId, j.rating, j.review, j.jobStatus, j.cost, b.businessId, b.business_name, c.categoryId, c.category_name FROM users u LEFT JOIN jobs j ON u.userId=j.userId LEFT JOIN businesses b ON b.businessId=j.businessId LEFT JOIN categories c ON c.categoryId=b.categoryId WHERE u.userId = ? && b.businessId = ?', [req.params.userId, req.params.businessId]
+            , function (error, results, fields) {
+                if (error) throw error;
+                res.json(results);
+            })
+    })
 
     //route for providing a list of jobs for a specific user
     app.get('/users/jobs/:userId', function (req, res) {
