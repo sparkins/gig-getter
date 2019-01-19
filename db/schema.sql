@@ -1,6 +1,10 @@
+DROP DATABASE IF EXISTS giggetter_db;
+
 CREATE DATABASE IF NOT EXISTS giggetter_db;
 
 USE giggetter_db;
+
+
 
 CREATE TABLE IF NOT EXISTS users(
     userId INT AUTO_INCREMENT,
