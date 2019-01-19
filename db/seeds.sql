@@ -6,7 +6,6 @@ VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handy
 ("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
 ("Pest Control"), ("Flooring");
 
-
 INSERT INTO businesses (categoryId, business_name, business_bio)
 VALUES (2, "Pauls Painting Services", "A new coat of paint can make your place look all brand new."), 
 (7, "Megan's Mongolian Massages", "If you've never had a mongolian massage, then you'll be in for a treat."), 
