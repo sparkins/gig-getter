@@ -1,9 +1,11 @@
+
 USE giggetter_db;
 
 INSERT INTO categories (category_name)
 VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handymen"), ("Carpet Cleaners"),
 ("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
-("Pest Control");
+("Pest Control"), ("Flooring");
+
 
 INSERT INTO businesses (categoryId, business_name, business_bio)
 VALUES (2, "Pauls Painting Services", "A new coat of paint can make your place look all brand new."), 
@@ -29,6 +31,7 @@ VALUES (2, "Pauls Painting Services", "A new coat of paint can make your place l
 (12, "Patsy's Pests", "Do you have a pest problem?  Rodents, bugs, nextdoor neighbours, we can get rid of them all!!"),
 (13, "Freddie's Floors", "Whether you want hardwood or laminate, we've got you covered");
 
+
 INSERT INTO users (username, email, password_hash, isABusiness) VALUES 
 ('user1', 'user1@gmail.com', 'pass', false), 
 ('user2', 'user2@gmail.com', 'pass', false), 
@@ -44,6 +47,7 @@ INSERT INTO users (username, email, password_hash, isABusiness) VALUES
 ('Alyssa', 'alyssanUp@gmail.com', 'pass', true), 
 ('Mo', 'MoMoneyMoProblems@yahoo.com', 'pass', false), 
 ('Manny', 'AllAsForYou@yahoo.com', 'pass', true);
+
 
 INSERT INTO jobs (userId, businessId, categoryId, rating, review, cost, jobStatus) VALUES
 (1,1,2,4,"Awesome paint job, just took a little longer than estimate.",800,3),
