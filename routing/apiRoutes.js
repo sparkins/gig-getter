@@ -114,7 +114,7 @@ module.exports = function (app) {
     // Get route to get all business info from business, category, jobs and user tables for the business home page
     app.get('/business/userInfo/:businessId/:userId', function (req, res) {
         connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.jobStatus, j.cost, u.userId, u.username, u.email FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId WHERE b.businessId = ? && u.userId = ?', [req.params.businessId, req.params.userId]
-            ,function (error, results, fields) {
+            , function (error, results, fields) {
                 if (error) throw error;
                 res.json(results);
             })
@@ -254,6 +254,36 @@ module.exports = function (app) {
                 console.log(results);
                 if (error) throw error;
                 res.json("New Job Added for " + req.params.userId);
+            })
+    })
+
+    // put route to update a job with a QUOTE from the business
+    app.put('/jobs/quote/:cost/:jobId', function (req, res) {
+        connection.query("UPDATE jobs SET cost = ?, jobStatus = 2 WHERE jobId = ?", [req.params.cost, req.params.jobId]
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                res.json("Updated Job #" + req.params.jobId + " with quote for $" + req.params.cost);
+            })
+    })
+
+    // put route to update a job when the user ACCEPTS the job
+    app.put('/jobs/accept-job/:jobId', function (req, res) {
+        connection.query("UPDATE jobs SET jobStatus = 3 WHERE jobId = ?", [req.params.jobId]
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                res.json("Accepted Job #" + req.params.jobId);
+            })
+    })
+
+    // put route to update a job when the user DECLINES the job
+    app.put('/jobs/decline-job/:jobId', function (req, res) {
+        connection.query("UPDATE jobs SET jobStatus = 4 WHERE jobId = ?", [req.params.jobId]
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                res.json("Declined Job #" + req.params.jobId);
             })
     })
 }
