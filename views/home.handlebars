@@ -1,0 +1,58 @@
+
+    <center>
+        <header>
+
+            <h5 id='welcomeHead'>Welcome To</h5>
+            <h2 id='giggitHead'>GigGit</h2>
+
+        </header>
+    </center>
+
+    <!-- image float left -->
+    <img id='image' src='/workersimage'>
+
+    <!-- sign up form floats right-->
+    <div id='signUp'>
+        <form id='signupform'>
+            <!-- takes username as req.query.username-->
+            <div id='nameInstructions' class='instruction'>Name </div>
+            <input id='username' name='username' type='text' class='inputfield' required><br>
+            <!-- takes email as req.query.email -->
+            <div id='emailInstructions' class='instruction'>Email </div>
+            <input id='email' name='email' type='email' class='inputfield' required><br>
+            <!-- takes profile picture, not working in backend, not a priority in project -->
+            <!-- <div id='picInstructions' class='instruction'>Choose a profile picture</div><input id='pic' name='pic' type='file'
+                class='inputfield'><br> -->
+
+                <!-- returns boolean isABusiness as name=req.query.bus -->
+            <div id='isabusiness' class='instruction'>
+                Are you offering a service?<br>
+                <input type='radio' name='bus' id='bussyes' value='true'><label for='bussyes' class='isabus'>YES</label>
+                <input type='radio' name='bus' id='bussno' value='false'><label for='bussno' class='isabus'>NO</label><br>
+            </div>
+            <!-- takes a password as name=req.query.pass -->
+            <div id='passInstructions' class='instruction'>Create a secure password</div>
+            <input id='pass' name='pass' type='password' class='inputfield' required><br>
+            <!-- submit button directs user to route /signup in apiroutes.js -->
+            <input type='submit' id='done' name='done' value='Get Started' class='btn'>
+        </form>
+
+        <!-- div to direct user to login form if already a member -->
+        <div id='orloginInstruction'>Already A Member? Login</div>
+
+
+
+        <!-- form to log in, floats right -->
+        <form id='login' class="loginform" >
+            <!-- takes email and password as req.query.emaillogin and req.query.passlogin -->
+            <div id='logEmail' class='instruction'>Email: </div><input type='email' name='emaillogin' id='emaillogin'
+                class='inputfield'><br>
+            <div id='logPass' class='instruction'>Password: </div><input type='password' name='passlogin' id='passlogin'
+                class='inputfield'><br>
+
+                <!-- Skip to next page without login, may take this out in the future but we can use it to navigate while we are building the site -->
+            <a href='/start' id='skip'>Skip This Step</a>
+            <input type='submit' id='ok' name='ok' value='OK' class='btn'>
+
+        </form>
+    </div>
