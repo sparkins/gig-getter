@@ -32,20 +32,20 @@ VALUES (2, "Pauls Painting Services", "A new coat of paint can make your place l
 
 
 INSERT INTO users (username, email, password_hash, isABusiness) VALUES 
-('user1', 'user1@gmail.com', 'pass', false), 
-('user2', 'user2@gmail.com', 'pass', false), 
-('user3', 'user3@gmail.com', 'pass', false), 
-('user4', 'user4@gmail.com', 'pass', false), 
-('user5', 'user5@gmail.com', 'pass', false), 
-('user6', 'user6@gmail.com', 'pass', false), 
-('user7', 'user7@gmail.com', 'pass', false), 
-('user8', 'user8@gmail.com', 'pass', false), 
-('user9', 'user9@gmail.com', 'pass', false), 
-('user10', 'user10@gmail.com', 'pass', false), 
-('Simon', 'simoneybags5000@gmail.com', 'pass', false), 
-('Alyssa', 'alyssanUp@gmail.com', 'pass', true), 
-('Mo', 'MoMoneyMoProblems@yahoo.com', 'pass', false), 
-('Manny', 'AllAsForYou@yahoo.com', 'pass', true);
+('user1', 'user1@gmail.com', '$2a$10$knvwBxbU7ZzSRdSzZ/fijuo8RRd1sR47.6WQ3iEaNHe9a/FP3IEH6', false), 
+('user2', 'user2@gmail.com', '$2a$10$ewszRhmPEPkLVaf2t/tX8uyZhUiozkx3uqwlQKX7nQ7WhbNWV5eIy', false), 
+('user3', 'user3@gmail.com', '$2a$10$eBEUmXZ.Hu.KDK1QNnR9hO4y5/AozcrdMQCc9ermUV6OFWdLx9pS6', false), 
+('user4', 'user4@gmail.com', '$2a$10$WFXCgDVhShiuFn9ylhJXE.hKu/r0giYEquVoHzJJXyMYOWZhjuEMK', false), 
+('user5', 'user5@gmail.com', '$2a$10$Tlwbd98zv.DR6.g1584PV.n05i0ltlIhz.Lqveyui0epQ99qxhWuu', false), 
+('user6', 'user6@gmail.com', '$2a$10$u/XoPZZO.ocI8IWIHhuwOOKlMalga2s0c2nkUZ3KI8A5TFtwXa8am', false), 
+('user7', 'user7@gmail.com', '$2a$10$z/hr1RnfZ4xnBbbvt63ZI.h585fbqXM5A1KrfwJ.2t4KWabuDPjo.', false), 
+('user8', 'user8@gmail.com', '$2a$10$vR0Ao0gfAlPD6Q0YSVfG4eNx2/sQLS244mJOurFolzYoi87pBQ4zm', false), 
+('user9', 'user9@gmail.com', '$2a$10$qf9WLOVVN17zyRZ4nE9UoOndcMOKfGsWKZwTaKIkek3egfeAZ3rBO', false), 
+('user10', 'user10@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', false), 
+('Simon', 'simoneybags5000@gmail.com', '$2a$10$OVQfSdsdixRkxp.1KT6OsuZ8mEzIIEIsGwDlF/0uPAgwv3AP1cIR2', false), 
+('Alyssa', 'alyssanUp@gmail.com', '$2a$10$o2VUDobCCjYSLKQFi4Wkc.HOGWH1PA708Njrv9jY2/mTCcWy604nW', true), 
+('Mo', 'MoMoneyMoProblems@yahoo.com', '$2a$10$wkxG36Hjzx687AsP5LFnGe8STbTlL9vstPMOl.Lu3AjhUNYuk6yCC', false), 
+('Manny', 'AllAsForYou@yahoo.com', '$2a$10$N1bBTOMv0KEmvWsYjj/kJOjIdyRnECo.79CKXyxUofCPSrv5/oFOW', true);
 
 
 INSERT INTO jobs (userId, businessId, categoryId, rating, review, cost, jobStatus) VALUES
