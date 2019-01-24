@@ -14,11 +14,11 @@ module.exports = function (app) {
   });
 
   app.get('/home', function (req, res) {
-    res.sendFile(path.join(__dirname, '/../public/home.html'))
+    res.render(path.join(__dirname, '/../views/home.handlebars'))
   });
 
   app.get('/business-home', function(req, res){
-    res.render(path.join(__dirname, '/../views/layouts/businesshome.handlebars'));
+    res.render(path.join(__dirname, '/../views/businesshome.handlebars'));
   })
 
   app.get('/user-home', function(req, res){
