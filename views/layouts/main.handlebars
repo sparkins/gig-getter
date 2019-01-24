@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/styles.css"> --}}
 
     <title>GigGit</title>
+
 </head>
 
 <style>
@@ -22,59 +23,103 @@
         background: url('../backgroundimage') no-repeat fixed;
         background-size: cover;
     }
-
-
     #giggitHead {
         font-family: 'Zilla Slab Highlight', cursive;
         font-size: 70px;
         color: rgb(239, 244, 248);
         text-shadow: 2px 2px rgb(88, 145, 167);
         margin-bottom: -20px;
+        margin-top: -1px;
         font-weight: bold;
     }
-
     #image {
-        float: left;
+        text-align: left;
         margin-left: 20%;
         margin-top: 8%;
     }
-
     #loginRow {
+        margin-top: 10px;
+        margin-bottom: 2px;
         width: 100%;
-    }
-
-    #login {
-        font-family: 'gruppo', cursive;
-        font-weight: bold;
-        font-size: 25px;
+        height: 50px;
         background: white;
+        text-align: right;
         border-width: 4px;
         border-style: ridge;
         border-color: rgb(239, 244, 248);
-        color: rgb(179, 212, 240);
-        margin-right: 20px;
-        float: left;
-        height: 35px;
-        padding: 10px;
     }
-
+    #login {
+        font-family: 'gruppo', cursive;
+        font-weight: bold;
+        font-size: 30px;
+        color: rgb(179, 212, 240);
+        /* text-align: right; */
+        margin-right: 200px;
+        padding: 5px;
+        margin-bottom: 5px;
+    }
     .iconImage {
-        float: left;
+
         height: 30px;
-        padding-right: 15px;
-        padding-left: 16px;
+        padding-right: 5px;
+        padding-left: 5px;
         padding-top: 4px;
         padding-bottom: 4px;
     }
-
-
+    #searchDiv { 
+        font-family: 'gruppo', cursive;
+        font-size: 20px;
+        color: rgb(1, 1, 19);
+        /* border: 4px dotted rgb(230, 242, 252);
+        /* background: rgb(230, 242, 252); */
+        width: 300px;
+        padding: 10px;
+    }
+    #searchForm {
+        color: white;
+        font-family: 'Gruppo', cursive;
+        width: 100px;
+    }
+    .searchoption {
+        font-size: 20px;
+        width: 100px;
+    }
+    #selectbox {
+        font-family: 'gruppo', cursive;
+        width: 300px;
+        padding: 5px;
+        margin: 5px;
+        font-size: 20px;
+        border: 3px ridge white;
+        background: rgb(204, 223, 238);
+    }
+    #selectbox:hover {
+        background: rgb(233, 242, 250);
+    }
+    #search-icon {
+        height: 30px;
+        /* color: rgb(122, 148, 168); */
+    }
+    #search-icon:hover {
+        background: rgb(109, 139, 161);
+        color: white;
+    }
 </style>
 
 <body>
 
     <div class="row" id='loginRow'>
-        <div id='login'> Welcome {{user}}!<img class='iconImage' src='/icon-search'><img class='iconImage' src='/icon-home'><img class='iconImage' src='/icon-edit'><img class='iconImage' src='/icon-logout'></div>
+        <span id='login'> Welcome {{user}}!</span>
+        <div id='allIcons'>
+            <img src="https://i.imgur.com/YCZLCM3.png" title="home" class='iconImage' id='home-icon' />
+            <img src="https://i.imgur.com/OTZf4Dp.png" title="edit" class='iconImage' id='edit-icon' />
+            <span id='searchDiv' class='iconImage'>Search: 
+               
+                <img src="https://i.imgur.com/4VQrnvT.png" title="search" class='iconImage' id='search-icon' type='submit' /></span>
+                <img src="https://i.imgur.com/qAF51nm.png" title="logout" class='iconImage' id='logout-icon'/>
+        </div>
     </div>
+
 
     <center>
         <header>
@@ -83,7 +128,51 @@
     </center>
     {{{ body }}}
 
-    <img id='image' src='/workersimage'>
+    {{!-- <img id='image' src='/workersimage'> --}}
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+
+
+        //route to show categories in drop down search menu
+        $.ajax({
+            url: '/alldata',
+            method: 'GET'
+        }).then(function (data) {
+            var count = 0;
+
+            //SEARCH BAR
+            var $option;
+            $select = $("<select>");
+            $form = $("<form>");
+
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].category_name);
+
+                $option = $("<option>");
+                $option.attr('value', data[i].category_name);
+                /* $option.attr('name', data[i].category_name); */ 
+                $option.attr('class', 'searchoption');
+                $option.html(data[i].category_name);
+
+                $select.attr('id', 'selectbox');
+                $select.append($option);
+
+                $form.append($select);
+                $form.attr('id', 'searchForm');
+
+                $("#searchDiv").append($form);
+
+
+            })
+
+
+    </script>
+
+
 </body>
 
 </html>
