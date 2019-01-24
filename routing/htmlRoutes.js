@@ -22,7 +22,7 @@ module.exports = function (app) {
   })
 
   app.get('/user-home', function(req, res){
-    res.render(path.join(__dirname, '/../views/layouts/userhome.handlebars'));
+    res.render(path.join(__dirname, '/../views/userhome.handlebars'));
   })
 
   app.get('/findcontractor', function(req, res){

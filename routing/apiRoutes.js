@@ -17,26 +17,33 @@ var connection = require('../controllers/connections.js');
 
 // Connecting apiRoutes to server.js, making sure routes are available when server.js is running
 module.exports = function (app) {
+    var express = require("express");
+    app.use(bodyParser.urlencoded({ extended: false }))
+
+    // ********   Home Route        ********
+    app.get("/", function (req, res) {
+        res.render("home")
+    })
+
 
     // *************************************
     // ******** SIGNUP/LOGIN ROUTES ********
     // *************************************
 
     // Sign Up Form Data
-    app.get('/signup', function (req, res) {
-        console.log(req.query.bus)
-        var bus = req.query.bus;
+    app.post('/signup', function (req, res) {
+        var bus = req.body.isbus;
         if (bus === "true")
             bus = 1;
         else
             bus = 0;
 
         bcrypt.genSalt(10, function (err, salt) {
-            bcrypt.hash(req.query.pass, salt, function (err, p_hash) {
+            bcrypt.hash(req.body.password, salt, function (err, p_hash) {
 
-                connection.query("INSERT INTO users (username, email, password_hash, isABusiness) values(?,?,?,?)", [req.query.username, req.query.email, p_hash, bus], function (err, results, fields) {
+                connection.query("INSERT INTO users (username, email, password_hash, isABusiness) values(?,?,?,?)", [req.body.username, req.body.email, p_hash, bus], function (err, results, fields) {
                     if (err)
-                        console.log('there was an error');
+                        res.status(500).send('Ooops!..Email address already Exist ');
                     else {
                         var Id = results.insertId;
                         connection.query("select * from users where userid = (?)", [Id], function (err, rows, fields) {
@@ -44,7 +51,10 @@ module.exports = function (app) {
                             req.session.email = rows[0].email;
                             req.session.username = rows[0].username;
                             //res.redirect('/start')
-                            res.render("start", { user: req.session.username })
+                            if (rows[0].isABusiness === 1)
+                                res.render("businesshome", { user: req.session.username })
+                            else
+                                res.render("userhome", { user: req.session.username })
                         })
                     }
                 })
@@ -64,26 +74,27 @@ module.exports = function (app) {
     
     */
 
-    // Sign Up Form Data
-    app.get('/signin', function (req, res) {
-        connection.query('SELECT * FROM users WHERE email = ?', [req.query.emaillogin], function (error, results, fields) {
+    // Sign In Form Data
+    app.post('/signin', function (req, res) {
+        connection.query('SELECT * FROM users WHERE email = ?', [req.body.email], function (error, results, fields) {
             if (error)
                 throw error;
             if (results.length == 0) {
-                res.send('try again');
+                res.status(500).send('Ooops!..Email address dose not Exist ');
             }
             else {
-                bcrypt.compare(req.query.passlogin, results[0].password_hash, function (err, result) {
+                bcrypt.compare(req.body.password, results[0].password_hash, function (err, result) {
                     if (result == true) {
                         req.session.user_id = results[0].id;
                         req.session.email = results[0].email;
                         req.session.username = results[0].username;
-                        //res.redirect('/start')
-                        res.render("start", { user: req.session.username })
+                        if (results[0].isABusiness === 1)
+                            res.render("businesshome", { user: req.session.username })
+                        else
+                            res.render("userhome", { user: req.session.username })
                     }
                     else {
-                        console.log(" ERROR ")
-                        res.redirect('/');
+                        res.status(500).send('Invalid password... ');
                     }
                 });
             }
@@ -290,8 +301,7 @@ module.exports = function (app) {
 
 //a route for all info for use in ajax calls (added by alyssa 1-20-19)
     app.get('/alldata', function (req, res) {
-      connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', [req.params.businessId]
-          , function (error, results, fields) {
+      connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', function (error, results, fields) {
               if (error) throw error;
               res.json(results);
           })
