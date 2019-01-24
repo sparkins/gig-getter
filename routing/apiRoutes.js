@@ -301,8 +301,7 @@ module.exports = function (app) {
 
 //a route for all info for use in ajax calls (added by alyssa 1-20-19)
     app.get('/alldata', function (req, res) {
-      connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', [req.params.businessId]
-          , function (error, results, fields) {
+      connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', function (error, results, fields) {
               if (error) throw error;
               res.json(results);
           })
