@@ -25,17 +25,17 @@ module.exports = function (app) {
     res.render(path.join(__dirname, '/../views/userhome.handlebars'));
   })
 
-  app.get('/findcontractor', function(req, res){
-    res.sendFile(path.join(__dirname, '/../public/findcontractor.html'));
-  })
+  // app.get('/findcontractor', function(req, res){
+  //   res.sendFile(path.join(__dirname, '/../public/findcontractor.html'));
+  // })
 
-  app.get('/postad', function(req, res){
-    res.sendFile(path.join(__dirname, '/../public/postad.html'));
-  })
+  // app.get('/postad', function(req, res){
+  //   res.sendFile(path.join(__dirname, '/../public/postad.html'));
+  // })
 
-  app.get('/start', function(req, res){
-    res.sendFile(path.join(__dirname, '/../public/start.html'));
-  })
+  // app.get('/start', function(req, res){
+  //   res.sendFile(path.join(__dirname, '/../public/start.html'));
+  // })
 
   app.get('/backgroundimage', function(req, res){
     res.sendFile(path.join(__dirname, '/../public/images/bluewave.jpg'));
@@ -53,12 +53,10 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/images/icon-home.png'));
   })
 
-
   app.get('/icon-search', function(req, res){
     res.sendFile(path.join(__dirname, '/../public/images/icon-search.png'));
   })
 
-  
   app.get('/icon-edit', function(req, res){
     res.sendFile(path.join(__dirname, '/../public/images/icon-edit.png'));
   })
@@ -66,8 +64,6 @@ module.exports = function (app) {
   app.get('/icon-logout', function(req, res){
     res.sendFile(path.join(__dirname, '/../public/images/icon-logout.png'));
   })
-
-
 
 }
 
