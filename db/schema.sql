@@ -23,9 +23,11 @@ CREATE TABLE IF NOT EXISTS categories(
 
 CREATE TABLE IF NOT EXISTS businesses(
     businessId INT AUTO_INCREMENT,
+    userId     INT ,
     categoryId INT NOT NULL,
     business_name VARCHAR(50) NOT NULL,
     business_bio VARCHAR (255),
+    FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId),
     PRIMARY KEY (businessId)
 ); 
