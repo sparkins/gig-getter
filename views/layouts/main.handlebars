@@ -34,7 +34,7 @@
     font-weight: bold;
 }
 
-    #loginRow {
+    #bar {
         background: rgb(36, 65, 77);
         border: 4px 4px ridge rgb(204, 221, 252);
         width: 100%;
@@ -44,7 +44,7 @@
         padding: 2px;
         padding-top: -2px;
     }
-    #login {
+    #displayname {
         font-family: 'gruppo', cursive;
         font-size: 30px;
         color: rgb(239, 244, 248);
@@ -98,7 +98,7 @@
     }
 
     #searchbar:hover {
-        background: rgb(209, 229, 236);
+        background: rgb(185, 208, 218);
     }
 
     #giggitHead {
@@ -113,11 +113,11 @@
 
     {{!-- THIS HEADER BAR APPEARS ON TOP OF EVERY HANDLEBARS PAGE --}}
     <header>
-        <div class='row icon' id='loginRow'>
+        <div class='row icon' id='bar'>
             <span id='allIcons'>
 
                 {{!-- USERNAME APPEARS ON THE LEFT --}}
-                <span id='login'>Welcome Alyssa {{user}}</span>
+                <span id='displayname'>Welcome Alyssa {{user}}</span>
 
                 {{!-- FOLLOWING ICONS APPEAR ON THE RIGHT (in reverse order, because they are floating) --}}
 
