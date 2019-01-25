@@ -54,7 +54,7 @@ INSERT INTO users (username, email, password_hash, isABusiness) VALUES
 ('user21', 'user21@gmail.com', '$2a$10$NmJfEcDJ8P3rZQIIUyZzBOmW8BVmrRmQfbMxOCMhIp3vx3AXAYFEO', true), 
 ('user22', 'user22@gmail.com', '$2a$10$I6hMgkkah3qsRyTBJj/s9eH9lwV3ETROUza.PW.UXtoQ3PK1N3GHO', true), 
 ('Simon', 'simoneybags5000@gmail.com', '$2a$10$OVQfSdsdixRkxp.1KT6OsuZ8mEzIIEIsGwDlF/0uPAgwv3AP1cIR2', false), 
-('Alyssa', 'alyssanUp@gmail.com', '$2a$10$o2VUDobCCjYSLKQFi4Wkc.HOGWH1PA708Njrv9jY2/mTCcWy604nW', false), 
+('Alyssa', 'alyssa@gmail.com', '$2a$10$o2VUDobCCjYSLKQFi4Wkc.HOGWH1PA708Njrv9jY2/mTCcWy604nW', false), 
 ('Mo', 'MoMoneyMoProblems@yahoo.com', '$2a$10$wkxG36Hjzx687AsP5LFnGe8STbTlL9vstPMOl.Lu3AjhUNYuk6yCC', false), 
 ('Manny', 'AllAsForYou@yahoo.com', '$2a$10$N1bBTOMv0KEmvWsYjj/kJOjIdyRnECo.79CKXyxUofCPSrv5/oFOW', false);
 
