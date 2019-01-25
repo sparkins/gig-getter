@@ -1,1 +1,105 @@
-<h1>userhome</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        font-family: 'gruppo', cursive;
+    }
+
+    .column {
+        float: left;
+        width: 40%;
+    }
+
+    #leftcolumn {
+        padding: 10px;
+    }
+
+    #reviewHead {
+        font-size: 30px;
+        font-weight: bold;
+        color: blue;
+    }
+
+    .col {
+        float: left;
+        width: 30%;
+        border: 2px ridge white;
+    }
+
+    .ratetable {
+        color: blue;
+    }
+
+
+    #rightcolumn {
+        background: blue;
+    }
+</style>
+
+
+
+<body>
+
+
+
+
+    <div class="row">
+        {{!-- left column to display username, email, and reviews --}}
+        <div class="column" id='leftcolumn'>
+            <h3 id='namedisplay'>{{user}}</h3>
+            <h4 id='emaildisplay'>{{email}}</h4>
+
+
+            <div id='user-reviews'>
+
+                <span id='reviewHead'>My Reviews</span><br>
+                <div class="row">
+                    <div class="col ratetable">Business Name<br>
+                        <span id='ratenames'>
+                            {{business-one}}<br>
+                            {{business-two}}<br>
+                            {{business-three}}
+                        </span>
+                    </div>
+                    <div class="col ratetable">Star Rating<br>
+                        <span id='ratenums'>
+                            {{rating-one}}<br>
+                            {{rating-two}}<br>
+                            {{rating-three}}
+                        </span>
+                    </div>
+                    <div class="col ratetable">Review<br>
+                        <span id='ratetext'>
+                            {{review-one}}<br>
+                            {{review-two}}<br>
+                            {{review-three}}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {{!-- right column to display jobs table --}}
+        <div class="column" id='rightcolumn'>two column</div>
+    </div>
+
+    {{!-- Job table with status --}}
+
+
+    {{!-- My reviews --}}
+
+
+
+</body>
+
+</html>
