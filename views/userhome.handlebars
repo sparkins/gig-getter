@@ -1,1 +1,224 @@
-<h1>userhome</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        font-family: 'gruppo', cursive;
+    }
+
+    .column {
+        float: left;
+        width: 40%;
+        margin-top: 2%;
+        padding: 10px;
+        margin-left: 10px;
+    }
+
+    #userDisplayName {
+        border: 3px dashed rgb(177, 225, 241);
+        border-top-left-radius: 100%;
+        padding-bottom: 5px;
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+
+    #namedisplay {
+        font-size: 40px;
+        color: rgb(49, 136, 165);
+    }
+
+    #emaildisplay {
+        font-size: 30px;
+        color: rgb(177, 225, 241);
+        padding-left: 15px;
+    }
+
+    #user-reviews {
+        margin-top: 80px;
+    }
+
+    .tableHead {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(42, 74, 104);
+        border-left: 3px dashed rgb(177, 225, 241);
+        padding-left: 8px;
+    }
+
+    .ratetable {
+        float: left;
+        width: 30%;
+    }
+
+
+    .rateItem,
+    .jobItem {
+        border-bottom: 2px dotted rgb(143, 203, 218);
+        padding-left: 8px;
+        height: 30px;
+    }
+
+    .colHead {
+        color: blue;
+        border-bottom: 3px ridge whitesmoke;
+        padding: 5px;
+    }
+
+    .ratestar {
+        height: 15px;
+    }
+
+
+    .jobtable {
+        width: 25%;
+        float: left;
+    }
+
+    .cellbtn {
+        height: 20px;
+        width: 60px;
+        margin: 5px;
+        border: 2px ridge white;
+    }
+
+    .accept {
+        background: rgb(225, 248, 225);
+    }
+
+    .deny {
+        background: rgb(255, 238, 238);
+    }
+
+    .cellbtn:hover {
+        background: rgb(143, 203, 218);
+    }
+</style>
+
+
+
+<body>
+
+
+
+    {{!-- Creating two columns inside a row --}}
+    <div class="row">
+
+        {{!-- LEFT COLUMN: displays username, email, and reviews table --}}
+        <div class="column" id='leftcolumn'>
+
+            {{!-- Div for username and email --}}
+            <div id='userDisplayName'>
+                <h3 id='namedisplay'>Example Name {{user}}</h3>
+                <h4 id='emaildisplay'>ExampleEmail@Examples.com{{email}}</h4>
+            </div>
+
+            {{!-- Div for table of user reveiws --}}
+            <div id='user-reviews'>
+                <div id='reviewHead' class='tableHead'>My Reviews</div><br>
+                <div class="row">
+                    {{!-- Review Table Column 1: Business Name --}}
+                    <div class="col ratetable">
+                        <div id='ratenames' class='colHead'>Business Name</div><br>
+                        <div class='rateItem cell'> example text {{business-one}}</div><br>
+                        <div class='rateItem cell'> example text {{business-two}}</div><br>
+                        <div class='rateItem cell'> example text {{business-three}}</div>
+                    </div>
+                    {{!-- Review Table Column 2: Number Rating (aka Star Rating) --}}
+                    <div class="col ratetable">
+                        <div id='ratenums' class='colHead'>Star Rating</div><br>
+                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
+                                src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
+                                class='ratestar'>
+                            {{rating-one}}</div><br>
+                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
+                                src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
+                                class='ratestar'><img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
+                            {{rating-two}}</div><br>
+                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
+                            {{rating-three}}</div>
+                    </div>
+                    {{!-- Review Table Column 3: Detailed Review Text --}}
+                    <div class="col ratetable">
+                        <div id='ratetext' class='colHead'>Review</div><br>
+                        <div class='rateItem cell'> example text {{review-one}}</div><br>
+                        <div class='rateItem cell'> example text {{review-two}}</div><br>
+                        <div class='rateItem cell'> example text {{review-three}}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {{!-- RIGHT COLUMN: to display jobs table --}}
+        <div class="column" id='rightcolumn'>
+
+            <div id='user-jobs'>
+                <div id='jobHead' class='tableHead'>My jobs</div><br>
+                <div class="row">
+                    {{!-- Job Table Column 1: Business Name --}}
+                    <div class="col jobtable">
+                        <div id='jobnames' class='colHead'>Business Name</div><br>
+                        <div class='jobItem cell'> example text {{business-one}}</div><br>
+                        <div class='jobItem cell'> example text {{business-two}}</div><br>
+                        <div class='jobItem cell'> example text {{business-three}}</div><br>
+                        <div class='jobItem cell'> example text {{business-four}}</div><br>
+                        <div class='jobItem cell'> example text {{business-five}}</div>
+                    </div>
+                    {{!-- Job Table Column 2: Quotes / Cost --}}
+                    <div class="col jobtable">
+                        <div id='jobnums' class='colHead'>Cost</div><br>
+                        <div class='jobItem cell'> $400{{cost-one}}</div><br>
+                        <div class='jobItem cell'> $750{{cost-two}}</div><br>
+                        <div class='jobItem cell'> Quote Requested{{cost-three}}</div><br>
+                        <div class='jobItem cell'> $500{{cost-four}}</div><br>
+                        <div class='jobItem cell'> $600{{cost-five}}</div>
+                    </div>
+                    {{!-- Job Table Column 3: job status --}}
+                    <div class="col jobtable">
+                        <div id='jobtext' class='colHead'>Job Status</div><br>
+                        <div class='jobItem cell'> Completed {{status-one}}</div><br>
+                        <div class='jobItem cell'> In Progress {{status-two}}</div><br>
+                        <div class='jobItem cell'> Pending {{status-three}}</div><br>
+                        <div class='jobItem cell'> Completed {{status-four}}</div><br>
+                        <div class='jobItem cell'> Cancelled {{status-five}}</div>
+                    </div>
+
+                    {{!-- Job Table Column 4: take action --}}
+                    <div class="col jobtable">
+                        <div id='jobtext' class='colHead'>Action</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn'>Rate</button> {{status-one}}</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button> {{status-two}}</div><br>
+                        <div class='jobItem cell'> NA {{status-three}}</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn'>Rate</button> {{status-four}}</div><br>
+                        <div class='jobItem cell'> NA {{status-five}}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    {{!-- Job table with status --}}
+
+
+
+
+
+
+    {{!-- My jobs --}}
+
+
+
+</body>
+
+</html>
