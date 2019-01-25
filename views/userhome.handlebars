@@ -13,18 +13,28 @@
         font-family: 'gruppo', cursive;
     }
 
+    /*total width of columns= 84% ; negative space = 16% */
     .column {
         float: left;
-        width: 40%;
-        margin-top: 2%;
-        padding: 10px;
-        margin-left: 10px;
+        margin-top: 4%;
     }
 
+    #leftcolumn {
+        width: 37%;
+        margin-left: 6%;
+        margin-right: 2%;
+    }
+
+    #rightcolumn {
+        width: 47%;
+        margin-right: 6%;
+        margin-left: 2%;
+    }
+
+    /* Display username, email, and image in upper left area of the page*/
     #userDisplayName {
-        border: 3px dashed rgb(177, 225, 241);
+        border: 3px dashed rgb(188, 248, 186);
         border-top-left-radius: 100%;
-        padding-bottom: 5px;
         margin-left: 10%;
         margin-right: 10%;
         width: 80%;
@@ -41,15 +51,39 @@
         padding-left: 15px;
     }
 
+    /* Styles for tables: user-reviews and user-jobs */
     #user-reviews {
-        margin-top: 80px;
+        margin-top: 12%;
+    }
+
+    .colHead {
+        color: rgb(49, 136, 165);
+        font-weight: bold;
+        border-bottom: 1px ridge rgb(183, 232, 248);
+        padding: 5px;
     }
 
     .tableHead {
         font-size: 30px;
         font-weight: bold;
-        color: rgb(42, 74, 104);
-        border-left: 3px dashed rgb(177, 225, 241);
+        color: rgb(49, 136, 165);
+        border-top: 3px dashed rgb(177, 225, 241);
+    }
+
+    .rateItem,
+    .jobItem {
+        border-bottom: 1px ridge rgb(230, 248, 253);
+        padding-left: 8px;
+        height: 30px;
+        color: rgb(8, 8, 59);
+    }
+    .costcell {
+        color: blue;
+    }
+
+    #reviewHead {
+        border-left: 3px ridge rgb(177, 225, 241);
+        border-top-right-radius: 100%;
         padding-left: 8px;
     }
 
@@ -58,19 +92,18 @@
         width: 30%;
     }
 
-
-    .rateItem,
-    .jobItem {
-        border-bottom: 2px dotted rgb(143, 203, 218);
-        padding-left: 8px;
-        height: 30px;
+    #jobHead {
+        text-align: right;
+        border-right: 3px ridge rgb(177, 225, 241);
+        border-top-left-radius: 100%;
+        padding-right: 8px;
     }
 
-    .colHead {
-        color: blue;
-        border-bottom: 3px ridge whitesmoke;
-        padding: 5px;
-    }
+
+
+
+
+
 
     .ratestar {
         height: 15px;
@@ -82,23 +115,58 @@
         float: left;
     }
 
+    .cell {
+        padding-bottom: 5px;
+    }
+
+    /* Button styling for Jobs table, column 4: "User Action Required" */
     .cellbtn {
         height: 20px;
         width: 60px;
         margin: 5px;
-        border: 2px ridge white;
+        color: rgb(6, 35, 43);
+        text-shadow: 1px 1px white;
+    }
+
+    .ratenow {
+        background: rgb(195, 233, 243);
+        border: 2px groove rgb(212, 236, 243);
+    }
+
+    .ratenow:hover {
+        color: white;
     }
 
     .accept {
-        background: rgb(225, 248, 225);
+        border: 2px groove rgb(206, 253, 205);
+        background: rgb(188, 248, 186);
+    }
+
+    .accept:hover {
+        color: rgb(157, 252, 157);
     }
 
     .deny {
+        border: 2px groove rgb(255, 246, 246);
         background: rgb(255, 238, 238);
     }
 
+    .deny:hover {
+        color: rgb(247, 196, 196);
+    }
+
     .cellbtn:hover {
-        background: rgb(143, 203, 218);
+        background: rgb(34, 121, 143);
+        text-shadow: none;
+        border-style: ridge;
+    }
+
+    #connectImage {
+        height: 80px;
+    }
+
+    #dividerImg {
+        width: 100%;
     }
 </style>
 
@@ -116,7 +184,7 @@
 
             {{!-- Div for username and email --}}
             <div id='userDisplayName'>
-                <h3 id='namedisplay'>Example Name {{user}}</h3>
+                <h3 id='namedisplay'>Example Name {{user}} <img src="https://i.imgur.com/ITgiiKr.png" id='connectImage'></h3>
                 <h4 id='emaildisplay'>ExampleEmail@Examples.com{{email}}</h4>
             </div>
 
@@ -163,49 +231,79 @@
             <div id='user-jobs'>
                 <div id='jobHead' class='tableHead'>My jobs</div><br>
                 <div class="row">
-                    {{!-- Job Table Column 1: Business Name --}}
+                    {{!-- Job Table Column 1: Business Name, "Gig" --}}
                     <div class="col jobtable">
-                        <div id='jobnames' class='colHead'>Business Name</div><br>
+                        <div id='jobnames' class='colHead'>Gig</div><br>
                         <div class='jobItem cell'> example text {{business-one}}</div><br>
                         <div class='jobItem cell'> example text {{business-two}}</div><br>
                         <div class='jobItem cell'> example text {{business-three}}</div><br>
                         <div class='jobItem cell'> example text {{business-four}}</div><br>
                         <div class='jobItem cell'> example text {{business-five}}</div>
                     </div>
-                    {{!-- Job Table Column 2: Quotes / Cost --}}
+                    {{!-- Job Table Column 2: Quotes / Cost, "Estimate"--}}
                     <div class="col jobtable">
-                        <div id='jobnums' class='colHead'>Cost</div><br>
-                        <div class='jobItem cell'> $400{{cost-one}}</div><br>
-                        <div class='jobItem cell'> $750{{cost-two}}</div><br>
-                        <div class='jobItem cell'> Quote Requested{{cost-three}}</div><br>
-                        <div class='jobItem cell'> $500{{cost-four}}</div><br>
-                        <div class='jobItem cell'> $600{{cost-five}}</div>
+                        <div id='jobnums' class='colHead'>Estimate</div><br>
+                        <div class='costcell jobItem cell'> $400{{cost-one}}</div><br>
+                        <div class='costcell jobItem cell'> $750{{cost-two}}</div><br>
+                        <div class='costcell jobItem cell'> Quote Requested{{cost-three}}</div><br>
+                        <div class='costcell jobItem cell'> $500{{cost-four}}</div><br>
+                        <div class='costcell jobItem cell'> $600{{cost-five}}</div>
                     </div>
-                    {{!-- Job Table Column 3: job status --}}
+                    {{!-- Job Table Column 3: job status, "Status" --}}
                     <div class="col jobtable">
-                        <div id='jobtext' class='colHead'>Job Status</div><br>
+                        <div id='jobtext' class='colHead'>Status</div><br>
                         <div class='jobItem cell'> Completed {{status-one}}</div><br>
-                        <div class='jobItem cell'> In Progress {{status-two}}</div><br>
+                        <div class='jobItem cell'> Confirmation needed {{status-two}}</div><br>
                         <div class='jobItem cell'> Pending {{status-three}}</div><br>
                         <div class='jobItem cell'> Completed {{status-four}}</div><br>
                         <div class='jobItem cell'> Cancelled {{status-five}}</div>
                     </div>
 
-                    {{!-- Job Table Column 4: take action --}}
+                    {{!-- Job Table Column 4: user takes action --}}
                     <div class="col jobtable">
                         <div id='jobtext' class='colHead'>Action</div><br>
-                        <div class='jobItem cell'> <button class='cellbtn'>Rate</button> {{status-one}}</div><br>
-                        <div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button> {{status-two}}</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn ratenow'>Rate</button> {{status-one}}</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>
+                            {{status-two}}</div><br>
                         <div class='jobItem cell'> NA {{status-three}}</div><br>
-                        <div class='jobItem cell'> <button class='cellbtn'>Rate</button> {{status-four}}</div><br>
+                        <div class='jobItem cell'> <button class='cellbtn ratenow'>Rate</button> {{status-four}}</div><br>
                         <div class='jobItem cell'> NA {{status-five}}</div>
                     </div>
 
                 </div>
             </div>
+
+            <img src='https://i.imgur.com/l1D9tyu.png' id='dividerImg'>
+
+            {{!--
+            For Jobs Table, we need a function to determine which businesses the user has requested quotes from
+            AND we need to know if these specific businesses have returned a quote or not.
+
+            If this.business returned a quote:
+            1. In mySql, "jobs.jobStatus" should be "Confirmation needed"
+            2. we need to display the quote in column 2: "Estimate"
+            3. we need to display job status in column 3 as "Confirmation needed"
+            4. we need to generate buttons ".accept" and ".deny" in column 4 for the user to respond.
+            -.accept Button will:
+            1. Update "jobs.jobStatus" in mySql to "Completed"
+            2. Refresh this userhome page
+            3. Display new job status "completed" in Column 3 on this page
+            4. Update Column 4 to a ".ratenow" button
+            ---> .ratenow btn saves this.business params and redirects to user-review.handlebars
+            -.deny Button will:
+            1. Update "jobs.jobStatus" in mySql to "Cancelled"
+            2. Refresh this userhome page
+            3. Display new job status "cancelled" in Column 3 on this page
+            4. Update Column 4 to be blank.
+
+            If this.business has NOT returned a quote yet:
+            1. In mySql, "jobs.jobStatus" should be "Pending"
+            2. we need to display "Quote Requested" in column 2: "Estimate"
+            3. we need to display current job status "pending" in column 3
+            4. Column 4, the action column, should be empty
+            --}}
+
         </div>
-
-
     </div>
 
     {{!-- Job table with status --}}
