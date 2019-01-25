@@ -6,6 +6,34 @@ VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handy
 ("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
 ("Pest Control"), ("Flooring");
 
+INSERT INTO users (username, email, password_hash, isABusiness) VALUES 
+('user1', 'user1@gmail.com', '$2a$10$knvwBxbU7ZzSRdSzZ/fijuo8RRd1sR47.6WQ3iEaNHe9a/FP3IEH6', true), 
+('user2', 'user2@gmail.com', '$2a$10$ewszRhmPEPkLVaf2t/tX8uyZhUiozkx3uqwlQKX7nQ7WhbNWV5eIy', true), 
+('user3', 'user3@gmail.com', '$2a$10$eBEUmXZ.Hu.KDK1QNnR9hO4y5/AozcrdMQCc9ermUV6OFWdLx9pS6', true), 
+('user4', 'user4@gmail.com', '$2a$10$WFXCgDVhShiuFn9ylhJXE.hKu/r0giYEquVoHzJJXyMYOWZhjuEMK', true), 
+('user5', 'user5@gmail.com', '$2a$10$Tlwbd98zv.DR6.g1584PV.n05i0ltlIhz.Lqveyui0epQ99qxhWuu', true), 
+('user6', 'user6@gmail.com', '$2a$10$u/XoPZZO.ocI8IWIHhuwOOKlMalga2s0c2nkUZ3KI8A5TFtwXa8am', true), 
+('user7', 'user7@gmail.com', '$2a$10$z/hr1RnfZ4xnBbbvt63ZI.h585fbqXM5A1KrfwJ.2t4KWabuDPjo.', true), 
+('user8', 'user8@gmail.com', '$2a$10$vR0Ao0gfAlPD6Q0YSVfG4eNx2/sQLS244mJOurFolzYoi87pBQ4zm', true), 
+('user9', 'user9@gmail.com', '$2a$10$qf9WLOVVN17zyRZ4nE9UoOndcMOKfGsWKZwTaKIkek3egfeAZ3rBO', true), 
+('user10', 'user10@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
+('user11', 'user11@gmail.com', '$2a$10$1e8pcopxvELBuMjUM0cGvuFxr3lGLTqhkqFddDOdhZ9Sh3lt2QW.m', true), 
+('user12', 'user12@gmail.com', '$2a$10$VEjxis9LeqfcJXo44wEBoO8bLyxLpkFGA/iGmvKBNr0NeaUYHyT0.', true), 
+('user13', 'user13@gmail.com', '$2a$10$5HIhqUZlH3QjPnkEC/bqUO7Du9VzL28BQ5h3Mc1nrwXIiULA757Bu', true), 
+('user14', 'user14@gmail.com', '$2a$10$2CvEPvwRzOz44TaiCfMpme6aG7hChcNEbPh76AHEzfWA.YRhNn.jO', true), 
+('user15', 'user15@gmail.com', '$2a$10$BGsiFYPUms1S/SlJPxaA0ONAQtB/H8NWBy/EI5GCmofCZTZV7UUXK', true), 
+('user16', 'user16@gmail.com', '$2a$10$Hkyoc1SH0PGg39H4OAd2DOd3S./mpY7/VtjuEeyOAlEY51toReGeW', true), 
+('user17', 'user17@gmail.com', '$2a$10$6UtJ7kDzh86L4QS.bfhRueaUfh8C52.r1u9LTDu420CrWTE9MRlQC', true), 
+('user18', 'user18@gmail.com', '$2a$10$NKpHuXSIOuJDkX7MqwyySuN9egmfFJCbqQRxOMqM08n3l2nMIG40q', true), 
+('user19', 'user19@gmail.com', '$2a$10$bWvUNoK40vJAfoxfCelDaOZNAFVVJnxLwYbfVczmch/4szWMA061q', true), 
+('user20', 'user20@gmail.com', '$2a$10$NiQy6UEQPkiWKO32OTqtv.T1GfozUvjzUsUZroBk4j3sj8/3CkpDS', true), 
+('user21', 'user21@gmail.com', '$2a$10$NmJfEcDJ8P3rZQIIUyZzBOmW8BVmrRmQfbMxOCMhIp3vx3AXAYFEO', true), 
+('user22', 'user22@gmail.com', '$2a$10$I6hMgkkah3qsRyTBJj/s9eH9lwV3ETROUza.PW.UXtoQ3PK1N3GHO', true), 
+('Simon', 'simoneybags5000@gmail.com', '$2a$10$OVQfSdsdixRkxp.1KT6OsuZ8mEzIIEIsGwDlF/0uPAgwv3AP1cIR2', false), 
+('Alyssa', 'alyssanUp@gmail.com', '$2a$10$o2VUDobCCjYSLKQFi4Wkc.HOGWH1PA708Njrv9jY2/mTCcWy604nW', false), 
+('Mo', 'MoMoneyMoProblems@yahoo.com', '$2a$10$wkxG36Hjzx687AsP5LFnGe8STbTlL9vstPMOl.Lu3AjhUNYuk6yCC', false), 
+('Manny', 'AllAsForYou@yahoo.com', '$2a$10$N1bBTOMv0KEmvWsYjj/kJOjIdyRnECo.79CKXyxUofCPSrv5/oFOW', false);
+
 INSERT INTO businesses (categoryId, userId, business_name, business_bio)
 VALUES (2, 1, "Pauls Painting Services", "A new coat of paint can make your place look all brand new."), 
 (7, 2, "Megan's Mongolian Massages", "If you've never had a mongolian massage, then you'll be in for a treat."), 
@@ -29,34 +57,6 @@ VALUES (2, 1, "Pauls Painting Services", "A new coat of paint can make your plac
 (8, 20, "Peter's Plumbing", "No plumbing job is too small, from fixing a problem to installing a new sink."),
 (12, 21, "Patsy's Pests", "Do you have a pest problem?  Rodents, bugs, nextdoor neighbours, we can get rid of them all!!"),
 (13, 22, "Freddie's Floors", "Whether you want hardwood or laminate, we've got you covered");
-
-INSERT INTO users (username, email, password_hash, isABusiness) VALUES 
-('user1', 'user1@gmail.com', '$2a$10$knvwBxbU7ZzSRdSzZ/fijuo8RRd1sR47.6WQ3iEaNHe9a/FP3IEH6', true), 
-('user2', 'user2@gmail.com', '$2a$10$ewszRhmPEPkLVaf2t/tX8uyZhUiozkx3uqwlQKX7nQ7WhbNWV5eIy', true), 
-('user3', 'user3@gmail.com', '$2a$10$eBEUmXZ.Hu.KDK1QNnR9hO4y5/AozcrdMQCc9ermUV6OFWdLx9pS6', true), 
-('user4', 'user4@gmail.com', '$2a$10$WFXCgDVhShiuFn9ylhJXE.hKu/r0giYEquVoHzJJXyMYOWZhjuEMK', true), 
-('user5', 'user5@gmail.com', '$2a$10$Tlwbd98zv.DR6.g1584PV.n05i0ltlIhz.Lqveyui0epQ99qxhWuu', true), 
-('user6', 'user6@gmail.com', '$2a$10$u/XoPZZO.ocI8IWIHhuwOOKlMalga2s0c2nkUZ3KI8A5TFtwXa8am', true), 
-('user7', 'user7@gmail.com', '$2a$10$z/hr1RnfZ4xnBbbvt63ZI.h585fbqXM5A1KrfwJ.2t4KWabuDPjo.', true), 
-('user8', 'user8@gmail.com', '$2a$10$vR0Ao0gfAlPD6Q0YSVfG4eNx2/sQLS244mJOurFolzYoi87pBQ4zm', true), 
-('user9', 'user9@gmail.com', '$2a$10$qf9WLOVVN17zyRZ4nE9UoOndcMOKfGsWKZwTaKIkek3egfeAZ3rBO', true), 
-('user10', 'user10@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user11', 'user11@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user12', 'user12@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user13', 'user13@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user14', 'user14@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user15', 'user15@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user16', 'user16@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user17', 'user17@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user18', 'user18@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user19', 'user19@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user20', 'user20@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user21', 'user21@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('user22', 'user22@gmail.com', '$2a$10$xgnOMdzahD3UD3Eh4/HVQekVjTzN3Ao07GH7b.oX2GldsjlmNVqcu', true), 
-('Simon', 'simoneybags5000@gmail.com', '$2a$10$OVQfSdsdixRkxp.1KT6OsuZ8mEzIIEIsGwDlF/0uPAgwv3AP1cIR2', false), 
-('Alyssa', 'alyssanUp@gmail.com', '$2a$10$o2VUDobCCjYSLKQFi4Wkc.HOGWH1PA708Njrv9jY2/mTCcWy604nW', false), 
-('Mo', 'MoMoneyMoProblems@yahoo.com', '$2a$10$wkxG36Hjzx687AsP5LFnGe8STbTlL9vstPMOl.Lu3AjhUNYuk6yCC', false), 
-('Manny', 'AllAsForYou@yahoo.com', '$2a$10$N1bBTOMv0KEmvWsYjj/kJOjIdyRnECo.79CKXyxUofCPSrv5/oFOW', false);
 
 INSERT INTO jobs (userId, businessId, categoryId, rating, review, cost, jobStatus) VALUES
 (1,1,2,4,"Awesome paint job, just took a little longer than estimate.",800,3),
