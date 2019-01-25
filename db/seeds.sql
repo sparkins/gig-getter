@@ -6,30 +6,6 @@ VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handy
 ("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
 ("Pest Control"), ("Flooring");
 
-INSERT INTO businesses (categoryId, userId, business_name, business_bio)
-VALUES (2, 1, "Pauls Painting Services", "A new coat of paint can make your place look all brand new."), 
-(7, 2, "Megan's Mongolian Massages", "If you've never had a mongolian massage, then you'll be in for a treat."), 
-(1, 3, "Ciara's Cleaning Services", "If you want your place to sparkle, then you'll want to give Ciara's Cleaning Service a call!!"), 
-(9, 4, "Patricia's Personal Training", "Need to get in shape, or need help keeping up with your new years resolution, that's what I do!!!"), 
-(5, 5, "Craig's Carpet Cleaning", "If your carpets are looking dull, or need help getting rid of some tricky stains, give us a call.  Our prices are very competitive."), 
-(10, 6, "Graham's Gardening", "Whether you need someone to clean up your yard, weed, plant some new flowers, or install a new sprinkler system."), 
-(11, 7, "Erin's Electricity", "Need help rewiring your electrical system, installing new lighting, or other electrical tasks, then give me a call."),
-(2, 8, "Ian's Interior Painting", "Gives a call, no painting job is too small."), 
-(11, 9, "Sparky's Electricians", "We can rewire anything, and our prices won't be a shock :)."), 
-(11, 10, "Electrical Wiring R Us", "We specialize in residential and commercial electrical installation"), 
-(1, 11, "Maria's cleaning service", "We pride ourselves in personalizing every cleaning to our clients’ needs."), 
-(3, 12, "ABC Painters", "If the outside of your house needs painting, give us a call."), 
-(1, 13, "Merlinda's Maid Service", "Our services provide Home Cleaning, Office Cleaning, Move in/Move out Cleaning and Post-event Cleaning."), 
-(10, 14, "Green Bay Gardners", "GBG is here to make you dream garden & landscape a reality."),
-(4, 15, "Harvey's Handymen", "Something is broke, or you need to build or install a new piece of furniture, I can help."),
-(4, 16, "Handy Andy", "I can fix our build anything."),
-(6, 17, "JKR Junk Removal", "Spring cleaning, or cleaning out your garage, give us a call and we can take out the trash."),
-(6, 18, "Jackie's Junk", "We'll take away any junk no matter what size. ."),
-(8, 19, "The Plumbers Crack", "Do you have a crack in your pipe?  We can fix it!!"),
-(8, 20, "Peter's Plumbing", "No plumbing job is too small, from fixing a problem to installing a new sink."),
-(12, 21, "Patsy's Pests", "Do you have a pest problem?  Rodents, bugs, nextdoor neighbours, we can get rid of them all!!"),
-(13, 22, "Freddie's Floors", "Whether you want hardwood or laminate, we've got you covered");
-
 INSERT INTO users (username, email, password_hash, isABusiness) VALUES 
 ('user1', 'user1@gmail.com', '$2a$10$knvwBxbU7ZzSRdSzZ/fijuo8RRd1sR47.6WQ3iEaNHe9a/FP3IEH6', true), 
 ('user2', 'user2@gmail.com', '$2a$10$ewszRhmPEPkLVaf2t/tX8uyZhUiozkx3uqwlQKX7nQ7WhbNWV5eIy', true), 
@@ -58,6 +34,29 @@ INSERT INTO users (username, email, password_hash, isABusiness) VALUES
 ('Mo', 'MoMoneyMoProblems@yahoo.com', '$2a$10$wkxG36Hjzx687AsP5LFnGe8STbTlL9vstPMOl.Lu3AjhUNYuk6yCC', false), 
 ('Manny', 'AllAsForYou@yahoo.com', '$2a$10$N1bBTOMv0KEmvWsYjj/kJOjIdyRnECo.79CKXyxUofCPSrv5/oFOW', false);
 
+INSERT INTO businesses (categoryId, userId, business_name, business_bio)
+VALUES (2, 1, "Pauls Painting Services", "A new coat of paint can make your place look all brand new."), 
+(7, 2, "Megan's Mongolian Massages", "If you've never had a mongolian massage, then you'll be in for a treat."), 
+(1, 3, "Ciara's Cleaning Services", "If you want your place to sparkle, then you'll want to give Ciara's Cleaning Service a call!!"), 
+(9, 4, "Patricia's Personal Training", "Need to get in shape, or need help keeping up with your new years resolution, that's what I do!!!"), 
+(5, 5, "Craig's Carpet Cleaning", "If your carpets are looking dull, or need help getting rid of some tricky stains, give us a call.  Our prices are very competitive."), 
+(10, 6, "Graham's Gardening", "Whether you need someone to clean up your yard, weed, plant some new flowers, or install a new sprinkler system."), 
+(11, 7, "Erin's Electricity", "Need help rewiring your electrical system, installing new lighting, or other electrical tasks, then give me a call."),
+(2, 8, "Ian's Interior Painting", "Gives a call, no painting job is too small."), 
+(11, 9, "Sparky's Electricians", "We can rewire anything, and our prices won't be a shock :)."), 
+(11, 10, "Electrical Wiring R Us", "We specialize in residential and commercial electrical installation"), 
+(1, 11, "Maria's cleaning service", "We pride ourselves in personalizing every cleaning to our clients’ needs."), 
+(3, 12, "ABC Painters", "If the outside of your house needs painting, give us a call."), 
+(1, 13, "Merlinda's Maid Service", "Our services provide Home Cleaning, Office Cleaning, Move in/Move out Cleaning and Post-event Cleaning."), 
+(10, 14, "Green Bay Gardners", "GBG is here to make you dream garden & landscape a reality."),
+(4, 15, "Harvey's Handymen", "Something is broke, or you need to build or install a new piece of furniture, I can help."),
+(4, 16, "Handy Andy", "I can fix our build anything."),
+(6, 17, "JKR Junk Removal", "Spring cleaning, or cleaning out your garage, give us a call and we can take out the trash."),
+(6, 18, "Jackie's Junk", "We'll take away any junk no matter what size. ."),
+(8, 19, "The Plumbers Crack", "Do you have a crack in your pipe?  We can fix it!!"),
+(8, 20, "Peter's Plumbing", "No plumbing job is too small, from fixing a problem to installing a new sink."),
+(12, 21, "Patsy's Pests", "Do you have a pest problem?  Rodents, bugs, nextdoor neighbours, we can get rid of them all!!"),
+(13, 22, "Freddie's Floors", "Whether you want hardwood or laminate, we've got you covered");
 
 INSERT INTO jobs (userId, businessId, categoryId, rating, review, cost, jobStatus) VALUES
 (1,1,2,4,"Awesome paint job, just took a little longer than estimate.",800,3),
