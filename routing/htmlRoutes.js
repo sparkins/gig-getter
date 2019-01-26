@@ -46,6 +46,7 @@ module.exports = function (app) {
 
 
 // Creating routes to view each page so I can work on them -Alyssa
+
 app.get('/userhome', function(req, res){
   res.render(path.join(__dirname, '/../views/userhome.handlebars'));
 })

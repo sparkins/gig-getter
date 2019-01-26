@@ -3,10 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Corben|Fredericka+the+Great|Gruppo|Zilla+Slab+Highlight" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Account Settings</title>
 </head>
+
+<style>
+
+    * {
+        font-family: 'gruppo', cursive;
+    }
+
+#editingforms {
+    width: 33%;
+    margin-top: 6%;
+}
+
+#useredit, #usereditpass {
+    background: lightblue;
+    font-size: 25px;
+    text-align: left;
+    padding: 5px;
+}
+
+
+label, .editlabel {
+    background: lightblue;
+    color: rgb(49, 136, 165);
+}
+
+</style>
 <body>
-    This is the page where a user can edit or update their information, including username and password.
+    
+
+
+<center>
+
+    <div id='editingforms'>
+<div id='editnameHeader'>Change Username:</div>
+<form id='useredit'>
+    <div class='editlabel'>Old Username: <span id='oldusername'>{{user}}</span></div>
+    <label for='editusername'>New Username:</label>
+<input id='editusername' name='editusername'>
+</form>
+
+<form id='usereditpass'>
+    <label for='confirmpassword'>Confirm Current Password:</label>
+    <input id='confirmpassword' name='confirmpassword'><br>
+    <label for='editpassword'>New Password:</label>
+    <input id='editpassword' name='editpassword'>
+</form>
+
+</div>
+
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type='text/javascript'>
+    console.log('USER-EDIT: This is a settings page where a non-business user can edit their login information.');
+    </script>
 </body>
 </html>

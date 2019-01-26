@@ -3,7 +3,7 @@ USE giggetter_db;
 
 INSERT INTO categories (category_name)
 VALUES ("House Cleaners"), ("Interior Painters"), ("Exterior Painters"), ("Handymen"), ("Carpet Cleaners"),
-("Junk Removal"), ("Massage Theraphy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
+("Junk Removal"), ("Massage Therapy"), ("Plumming"), ("Personal Trainers"), ("Gardening"), ("Electricians"), 
 ("Pest Control"), ("Flooring");
 
 INSERT INTO users (username, email, password_hash, isABusiness) VALUES 

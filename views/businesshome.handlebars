@@ -141,7 +141,7 @@
                 <h4 id='businesscategorydiv'>Type of Business{{categories.category_name}}</h4>
             </div>
             {{!-- star rating goes here, need to "GET" jobs.rating integer and convert the number to number of
-            .starRating img --}}
+            .starRating images to show. I can create half stars if we want to show more accurate ratings, or we can round # to full stars --}}
             <div id='ratingsdiv'>
                 <center>
                     <img src='https://i.imgur.com/vwpthwu.png' class='starRating'>
@@ -161,8 +161,7 @@
                 real ones --}}
 
                 <div class='row' id='businessjobstable'><span id='jobstableTitle'>My Gigs</span><br><br>
-                    {{!-- COLUMN 1: "Customer", GET info from users.username to display customers who requested a quote
-                    --}}
+                    {{!-- COLUMN 1: "Customer", GET info from users.username to display usernames of customers who requested a quote--}}
                     <div class="jobscol">
                         <div class='colTitle'>Customer</div>
                         <div class="cell jobcustomerC">Guy{{users.username1}}</div>
@@ -173,15 +172,6 @@
                         <div class="cell jobcustomerC">Drake {{users.username6}}</div>
                     </div>
                     {{!-- COLUMN 2: "Estimate", GET info from jobs.cost --}}
-                    {{!-- If business has sent quote, we will display the amount in column 2: "Estimate" --}}
-                    {{!-- If business hasn't sent quote,
-                    1. we generate a form to submit a quote in col2
-                    2. we store the value they submit in mysql jobs.cost table with "req.query.newquote"
-                    --->We NEED A ROUTE FOR ADDING QUOTES TO JOBS TABLE, then we can update form action route
-                    --->The route should post the quote to jobs.cost and then redirect user back to
-                    businesshome.handlebars
-                    3. after they submit the quote, refresh this page with col2 updated, displaying the new
-                    estimate--}}
                     <div class="jobscol">
                         <div class='colTitle'>Estimate</div>
                         <div class="cell jobcostC">$400 {{jobs.cost1}}</div>
@@ -202,16 +192,44 @@
                         <div class="cell jobcostC">$200 {{jobs.cost6}}</div>
                     </div>
                     {{!-- COLUMN 3: "Gig Status", GET info from jobs.jobStatus --}}
-                    {{!-- If jobStatus is 'Completed' we generate the text AND img .checkmark in .jobstatusC --}}
                     <div class="jobscol">
                         <div class="colTitle">Gig Status</div>
-                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'> {{jobs.jobStatus1}}</div>
-                        <div class="cell jobstatusC">Pending User Acceptance{{jobs.jobStatus2}}</div>
-                        <div class="cell jobstatusC">Pending Quote {{jobs.jobStatus3}}</div>
-                        <div class="cell jobstatusC">Pending Quote {{jobs.jobStatus4}}</div>
+                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
+                            {{jobs.jobStatus1}}</div>
+                        <div class="cell jobstatusC">Confirmation Needed{{jobs.jobStatus2}}</div>
+                        <div class="cell jobstatusC">Pending {{jobs.jobStatus3}}</div>
+                        <div class="cell jobstatusC">Pending {{jobs.jobStatus4}}</div>
                         <div class="cell jobstatusC">Cancelled {{jobs.jobStatus5}}</div>
-                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'> {{jobs.jobStatus6}}</div>
+                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
+                            {{jobs.jobStatus6}}</div>
                     </div>
+
+                    {{!-- For Jobs Table, we need a function to determine which users have requested quotes from this business
+                    AND we need to know if the businesses has returned a quote or not.
+
+                    If this.business returned a quote:
+                    1. In mySql, "jobs.jobStatus" should be:
+                        ---> "Confirmation Needed" if the user has not accepted or denied yet
+                        ---> "Completed" if the user has accepted the quote.
+                        ---> "Cancelled" if the user has denied the quote.
+                        If the job status is "Completed" we will generate the text "Completed" AND an image of a checkmark next to it
+                        with src='https://i.imgur.com/goSfMfs.png' and class='checkmark' in div .jobstatusC
+                    2. we need to display the quote in column 2: "Estimate"
+                    3. we need to display current job status in column 3 as either "Confirmation Needed", "Completed", or "Cancelled"                  
+
+                    If this.business has NOT returned a quote yet:
+                    1. In mySql, "jobs.jobStatus" should be "Pending"
+                    2. we need to generate a form in col2 that looks like this:
+                             <form class='sendquoteForm' action='/' method='POST'>
+                                <input class='quoteinput' type='number' min='0' name='newquote'>
+                                <input type='submit' value='Give Quote' class='quotesubmit'>
+                             </form>
+                        The ACTION of the form should go to the route where we store this data to the jobs table.
+                        ---> We need a POST route to add quotes to jobs table
+                        ---> This route should post the quote to jobs.cost and then redirect user back to businesshome.handlebars
+                    3. After they submit the quote and get redirected back, we need to display current job status "Pending" in column 3
+                    and display the new quote value in col2 'estimate'
+                     --}}
 
                 </div>
             </center>
@@ -221,7 +239,9 @@
 
 
 
-
+    <script type='text/javascript'>
+        console.log('BUSINESSHOME: This is the homepage/profile for business users.')
+    </script>
 </body>
 
 </html>
