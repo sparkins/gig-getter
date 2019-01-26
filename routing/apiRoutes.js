@@ -237,7 +237,7 @@ module.exports = function (app) {
 
     // Get route to get all user info from user, business, category and jobs tables for the users home page
     app.get('/users/allinfo/:userId', function (req, res) {
-        connection.query('SELECT u.userId, u.username, u.email, j.jobId, j.rating, j.review, j.jobStatus, j.cost, b.businessId, b.business_name, c.categoryId, c.category_name FROM users u LEFT JOIN jobs j ON u.userId=j.userId LEFT JOIN businesses b ON b.businessId=j.businessId LEFT JOIN categories c ON c.categoryId=b.categoryId WHERE u.userId = ?', [req.params.userId]
+        connection.query('SELECT u.userId, u.isABusiness, u.username, u.email, j.jobId, j.rating, j.review, j.jobStatus, j.cost, b.businessId, b.business_name, c.categoryId, c.category_name FROM users u LEFT JOIN jobs j ON u.userId=j.userId LEFT JOIN businesses b ON b.businessId=j.businessId LEFT JOIN categories c ON c.categoryId=b.categoryId WHERE u.userId = ?', [req.params.userId]
             , function (error, results, fields) {
                 if (error) throw error;
                 res.json(results);
