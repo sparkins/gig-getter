@@ -63,6 +63,10 @@ app.get('/user-review', function(req, res){
   res.render(path.join(__dirname, '/../views/user-review.handlebars'));
 })
 
+app.get('/user-business', function(req, res){
+  res.render(path.join(__dirname, '/../views/user-business.handlebars'))
+})
+
 app.get('/businesshome', function(req, res){
   res.render(path.join(__dirname, '/../views/businesshome.handlebars'));
 })
