@@ -55,13 +55,15 @@ $(document).ready(function () {
     })
  
     // logout
-    $("#logout-icon").on("click", function () {
+    $("#logoutlink").on("click", function () {
+        console.log('alert');
         $.ajax("/logout", {
             type: "Get",
             success: function (responce) {
               
                 document.write(responce)
-                location.reload(responce)
+                document.close();
+                // location.reload(responce)
             }
         })
     })

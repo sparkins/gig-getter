@@ -193,9 +193,9 @@
                     {{!-- Review Table Column 1: Business Name --}}
                     <div class="col ratetable">
                         <div id='ratenames' class='colHead'>Business Name</div><br>
-                        <div class='rateItem cell'> example text {{business-one}}</div><br>
-                        <div class='rateItem cell'> example text {{business-two}}</div><br>
-                        <div class='rateItem cell'> example text {{business-three}}</div>
+                        <div class='rateItem cell'>Pauls Painting Services</div><br>
+                        <div class='rateItem cell'>Megan's Mongolian Massages</div><br>
+                        <div class='rateItem cell'>Craig's Carpet Cleaning</div>
                     </div>
                     {{!-- Review Table Column 2: Number Rating (aka Star Rating) --}}
                     <div class="col ratetable">
@@ -208,15 +208,17 @@
                                 src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
                                 class='ratestar'><img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
                             {{rating-two}}</div><br>
-                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
-                            {{rating-three}}</div>
+                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
+                                src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
+                                class='ratestar'><img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
+                            {{rating-two}}</div><br>
                     </div>
                     {{!-- Review Table Column 3: Detailed Review Text --}}
                     <div class="col ratetable">
                         <div id='ratetext' class='colHead'>Review</div><br>
-                        <div class='rateItem cell'> example text {{review-one}}</div><br>
-                        <div class='rateItem cell'> example text {{review-two}}</div><br>
-                        <div class='rateItem cell'> example text {{review-three}}</div>
+                        <div class='rateItem cell'>Awesome paint job...</div><br>
+                        <div class='rateItem cell'>First time and wont be the last...</div><br>
+                        <div class='rateItem cell'>Craig was even able to get rid...</div>
                     </div>
 
                 </div>
@@ -232,45 +234,21 @@
                     {{!-- Job Table Column 1: Business Name, "Gig" --}}
                     <div class="col jobtable">
                         <div id='jobnames' class='colHead'>Gig</div><br>
-                        {{!-- <div class='jobItem cell'> example text {{business-one}}</div><br>
-                        <div class='jobItem cell'> example text {{business-two}}</div><br>
-                        <div class='jobItem cell'> example text {{business-three}}</div><br>
-                        <div class='jobItem cell'> example text {{business-four}}</div><br>
-                        <div class='jobItem cell'> example text {{business-five}}</div> --}}
                     </div>
+
                     {{!-- Job Table Column 2: Quotes / Cost, "Estimate"--}}
                     <div class="col jobtable">
                         <div id='jobnums' class='colHead'>Estimate</div><br>
-                        {{!-- <div class='costcell jobItem cell'> $400{{cost-one}}</div><br>
-                        <div class='costcell jobItem cell'> $750{{cost-two}}</div><br>
-                        <div class='costcell jobItem cell'> Quote Requested{{cost-three}}</div><br>
-                        <div class='costcell jobItem cell'> $500{{cost-four}}</div><br>
-                        <div class='costcell jobItem cell'> $600{{cost-five}}</div> --}}
                     </div>
-                    {{!-- Job Table Column 3: job status, "Status" --}}
-                    {{!-- If jobStatus = 'Completed' we generate the text 'Completed' AND an image of a checkmark with
-                    src='https://i.imgur.com/goSfMfs.png' and class='checkmark' --}}
+
+                    {{!-- Job Table Column 3: Job Status--}}
                     <div class="col jobtable">
                         <div id='jscol' class='colHead'>Status</div><br>
-                        {{!-- <div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
-                            {{status-one}}</div><br>
-                        <div class='jobItem cell'> Confirmation needed {{status-two}}</div><br>
-                        <div class='jobItem cell'> Pending {{status-three}}</div><br>
-                        <div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
-                            {{status-four}}</div><br>
-                        <div class='jobItem cell'> Cancelled {{status-five}}</div> --}}
                     </div>
 
                     {{!-- Job Table Column 4: user takes action --}}
                     <div class="col jobtable">
                         <div id='jobtext' class='colHead'>Action</div><br>
-                        {{!-- <div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a>
-                            {{status-one}}</div><br>
-                        <div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>
-                            {{status-two}}</div><br>
-                        <div class='jobItem cell'> NA {{status-three}}</div><br>
-                        <div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a> {{status-four}}</div><br>
-                        <div class='jobItem cell'> NA {{status-five}}</div> --}}
                     </div>
 
                 </div>
@@ -313,8 +291,8 @@
     <script>
 
         $.ajax({
-            url: 'http://localhost:3000/users/allinfo/2',
-            //url: 'http://localhost:3000/users/allinfo/{{user.userId}}',
+            //url: 'http://localhost:3000/users/allinfo/2',
+            url: 'http://localhost:3000/users/allinfo/{{user.userId}}',
 
             method: 'GET'
         }).then(function (data) {
@@ -333,20 +311,20 @@
                 // if else statements based on jobStatus to determine what to display
                 if (parseInt(data.jobStatus) === 1) { 
                     jobStatusText = "Quote Requested";
-                    jobAction = "<div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a>{{status-one}}</div><br>"
+                    jobAction = "<a href='/user-review' class='cellbtn ratenow'>Rate</a>"
                                             }
                 else if (parseInt(data.jobStatus) === 2) {
                     jobStatusText = "Confirmation Needed"
-                    jobAction = "<div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>{{status-two}}</div><br>"
-
+                    jobAction = "<button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>"
                 }
                 else if (parseInt(data.jobStatus) === 3) {
-                    jobStatusText = "Completed"
-                    jobAction = "<div class='jobItem cell'> NA {{status-three}}</div><br>"
+                    jobStatusText = "<div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'></div>"
+                    jobAction = "<a href='/user-review' class='cellbtn ratenow'>Rate</a>"
                 }
                 else if (parseInt(data.jobStatus) === 4) {
                     jobStatusText = "Cancelled"
-                    jobAction = "<div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a> {{status-four}}</div><br>"
+                    jobAction = "NA"
+
                 }
                 // construct the div to display the gig category
                 tcatrow = $('<div>'),
@@ -370,7 +348,7 @@
                 tactionrow = $('<div>')
                     $(tactionrow).html(jobAction)
                     $(tactionrow).attr('class', 'jobItem cell')
-                    $("#jobtext").append(jobAction)
+                    $("#jobtext").append(tactionrow)
             });
         });
     </script>

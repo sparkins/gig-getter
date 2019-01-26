@@ -138,7 +138,7 @@
             <div id='businessNameDisplay'>
                 <h3 id='businessnamediv'>
                     <img src="https://i.imgur.com/ITgiiKr.png" id='globeImg'>
-                    Business Name {{businesses.business_name}} </h3>
+                    <span id='businessName'></span></h3>
                 <h4 id='businesscategorydiv'>Type of Business{{categories.category_name}}</h4>
             </div>
             {{!-- star rating goes here, need to "GET" jobs.rating integer and convert the number to number of
@@ -167,44 +167,16 @@
                     requested a quote--}}
                     <div class="jobscol" id='custcol'>
                         <div class='colTitle'>Customer</div>
-                        {{!-- <div class="cell jobcustomerC" id='custrow1'>Guy{{users.username1}}</div>
-                        <div class="cell jobcustomerC" id='custrow2'>Eddy {{users.username2}}</div>
-                        <div class="cell jobcustomerC" id='custrow3'>Martin {{users.username3}}</div>
-                        <div class="cell jobcustomerC">Sheila{{users.username4}}</div>
-                        <div class="cell jobcustomerC">Asha {{users.username5}}</div>
-                        <div class="cell jobcustomerC">Drake {{users.username6}}</div> --}}
                     </div>
+
                     {{!-- COLUMN 2: "Estimate", GET info from jobs.cost --}}
                     <div class="jobscol" id='costcol'>
                         <div class='colTitle'>Estimate</div>
-                        {{!-- <div class="cell jobcostC" id='costrow1'>$400 {{jobs.cost1}}</div>
-                        <div class="cell jobcostC" id='costrow2'>$300 {{jobs.cost2}}</div>
-                        <div class="cell jobcostC" id='costrow3'>
-                            <form class='sendquoteForm' action='/' method='POST'>
-                                <input class='quoteinput' type='number' min='0' name='newquote'>
-                                <input type='submit' value='Give Quote' class='quotesubmit'>
-                            </form>{{jobs.cost3}}
-                        </div>
-                        <div class="cell jobcostC">
-                            <form class='sendquoteForm' action='/' method='POST'>
-                                <input class='quoteinput' type='number' min='0' name='newquote'>
-                                <input type='submit' value='Give Quote' class='quotesubmit'>
-                            </form>{{jobs.cost4}}
-                        </div>
-                        <div class="cell jobcostC">$550 {{jobs.cost5}}</div>
-                        <div class="cell jobcostC">$200 {{jobs.cost6}}</div> --}}
                     </div>
+
                     {{!-- COLUMN 3: "Gig Status", GET info from jobs.jobStatus --}}
                     <div class="jobscol" id='jscol'>
                         <div class="colTitle">Gig Status</div>
-                        {{!-- <div class="cell jobstatusC" id='jsrow1'>Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
-                            {{jobs.jobStatus1}}</div>
-                        <div class="cell jobstatusC" id='jsrow2'>Confirmation Needed{{jobs.jobStatus2}}</div>
-                        <div class="cell jobstatusC" id='jsrow3'>Pending {{jobs.jobStatus3}}</div>
-                        <div class="cell jobstatusC">Pending {{jobs.jobStatus4}}</div>
-                        <div class="cell jobstatusC">Cancelled {{jobs.jobStatus5}}</div>
-                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
-                            {{jobs.jobStatus6}}</div> --}}
                     </div>
 
                     {{!-- For Jobs Table, we need a function to determine which users have requested quotes from this
@@ -264,8 +236,8 @@
     <script>
 
         $.ajax({
-            url: 'http://localhost:3000/business/allinfo/1',
-            //url: 'http://localhost:3000/business/allinfo/{{user.userId}}',
+            //url: 'http://localhost:3000/business/allinfo/1',
+            url: 'http://localhost:3000/business/allinfo/{{user.userId}}',
 
             method: 'GET'
         }).then(function (data) {
@@ -295,7 +267,7 @@
                         $(tcostrow).attr('class', 'cell jobcostC')
                 }
                 else if (parseInt(data.jobStatus) === 3) {
-                    jobStatusText = "Completed"
+                    jobStatusText = "<div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'></div>"
                     tcostrow = $('<div>')
                         $(tcostrow).html(data.cost)
                         $(tcostrow).attr('class', 'cell jobcostC')
@@ -318,9 +290,12 @@
                     $(tjsrow).attr('class', 'cell jobstatusC'),
                     $("#jscol").append(tjsrow)
                    
-                   // display job cost in the table
-                    $("#costcol").append(tcostrow)
+                // display job cost in the table
+                $("#costcol").append(tcostrow)
 
+                $('#businesscategorydiv').html(data.category_name);
+                //console.log(data.business_name+":"+data.category_name);
+                $('#businessName').html(data.business_name);
             });
         });
     </script>

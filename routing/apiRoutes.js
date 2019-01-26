@@ -50,13 +50,11 @@ module.exports = function (app) {
                             req.session.user_id = rows[0].userId;
                             req.session.email = rows[0].email;
                             req.session.username = rows[0].username;
-
                             //res.redirect('/start')
                             if (rows[0].isABusiness === 1)
-                            res.render("/businesshome",{connected:req.session.username, user: results[0]})
-                            //console.log(results[0])
-                        else
-                            res.render("/userhome",{connected:req.session.username, user: results[0]})
+                                res.render("businesshome", { user: req.session.username })
+                            else
+                                res.render("userhome", { user: req.session.username })
                         })
                     }
                 })
@@ -78,8 +76,6 @@ module.exports = function (app) {
 
     // Sign In Form Data
     app.post('/signin', function (req, res) {
-        
-
         connection.query('SELECT * FROM users WHERE email = ?', [req.body.email], function (error, results, fields) {
             if (error)
                 throw error;
@@ -92,13 +88,10 @@ module.exports = function (app) {
                         req.session.user_id = results[0].id;
                         req.session.email = results[0].email;
                         req.session.username = results[0].username;
-                        
                         if (results[0].isABusiness === 1)
-                        res.json(req.session.username)
-                        // res.render("businesshome",{connected:req.session.username, user: results[0]})
-                        //console.log(results[0])
-                    else
-                        res.render("userhome",{connected:req.session.username, user: results[0]})
+                            res.render("businesshome", { user: req.session.username })
+                        else
+                            res.render("userhome", { user: req.session.username })
                     }
                     else {
                         res.status(500).send('Invalid password... ');
@@ -107,13 +100,6 @@ module.exports = function (app) {
             }
         })
     });
-
-    // logout
-    app.get('/logout', function(req, res){
-        req.session.destroy(function(err){
-        res.render("home")
-        })
-        }); 
 
     // *************************************
     // ********** BUSINESS ROUTES **********
@@ -314,20 +300,13 @@ module.exports = function (app) {
 
 
 //a route for all info for use in ajax calls (added by alyssa 1-20-19)
-//IMPORTANT ROUTE - 
     app.get('/alldata', function (req, res) {
       connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', function (error, results, fields) {
               if (error) throw error;
               res.json(results);
           })
   })
-//This route is being used in user-search and business-search. If you edit or delete this route, please make adjustments to the ajax scripts in handlebars pages to make sure they still work
-    app.get('/businesscategory', function(req, res){
-      connection.query('SELECT * FROM businesses LEFT JOIN categories ON businesses.categoryId=categories.categoryId', function(error, results, fields){
-        if (error) throw error;
-        res.json(results);
-      })
-    })
+
 
 }
 
