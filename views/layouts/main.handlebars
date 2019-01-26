@@ -117,11 +117,11 @@
             <span id='allIcons'>
 
                 {{!-- USERNAME APPEARS ON THE LEFT --}}
-                {{#if user.username}}
-                <span id='displayname'>Welcome {{user.username}}</span>
-                {{else}}
+              {{#if connected}}
+                <span id='displayname'>Welcome {{connected}}</span>
+              {{else}} 
                 <span id='displayname'>Not Connected</span>
-                {{/if}}
+              {{/if}}  
                 {{!-- FOLLOWING ICONS APPEAR ON THE RIGHT (in reverse order, because they are floating) --}}
 
                 {{!-- logout icon --}}
@@ -161,7 +161,6 @@
             <h2 id='giggitHead'>GigGit</h2>
         </header>
     </center>
-
 
     {{{ body }}}
 

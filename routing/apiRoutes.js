@@ -50,12 +50,13 @@ module.exports = function (app) {
                             req.session.user_id = rows[0].userId;
                             req.session.email = rows[0].email;
                             req.session.username = rows[0].username;
+
                             //res.redirect('/start')
                             if (rows[0].isABusiness === 1)
-                            res.render("businesshome",{connected:req.session.username, user: results[0]})
+                            res.render("/businesshome",{connected:req.session.username, user: results[0]})
                             //console.log(results[0])
                         else
-                            res.render("userhome",{connected:req.session.username, user: results[0]})
+                            res.render("/userhome",{connected:req.session.username, user: results[0]})
                         })
                     }
                 })
@@ -77,6 +78,8 @@ module.exports = function (app) {
 
     // Sign In Form Data
     app.post('/signin', function (req, res) {
+        
+
         connection.query('SELECT * FROM users WHERE email = ?', [req.body.email], function (error, results, fields) {
             if (error)
                 throw error;
@@ -89,8 +92,10 @@ module.exports = function (app) {
                         req.session.user_id = results[0].id;
                         req.session.email = results[0].email;
                         req.session.username = results[0].username;
+                        
                         if (results[0].isABusiness === 1)
-                        res.render("businesshome",{connected:req.session.username, user: results[0]})
+                        res.json(req.session.username)
+                        // res.render("businesshome",{connected:req.session.username, user: results[0]})
                         //console.log(results[0])
                     else
                         res.render("userhome",{connected:req.session.username, user: results[0]})
