@@ -264,8 +264,8 @@
     <script>
 
         $.ajax({
-            url: 'http://localhost:3000/business/allinfo/1',
-            //url: 'http://localhost:3000/business/allinfo/{{user.userId}}',
+            //url: 'http://localhost:3000/business/allinfo/1',
+            url: 'http://localhost:3000/business/allinfo/{{user.userId}}',
 
             method: 'GET'
         }).then(function (data) {
@@ -318,9 +318,12 @@
                     $(tjsrow).attr('class', 'cell jobstatusC'),
                     $("#jscol").append(tjsrow)
                    
-                   // display job cost in the table
-                    $("#costcol").append(tcostrow)
+                // display job cost in the table
+                $("#costcol").append(tcostrow)
 
+                $('#businesscategorydiv').html(data.category_name);
+                //console.log(data.business_name+":"+data.category_name);
+                $('#businessnamediv').html(data.business_name);
             });
         });
     </script>

@@ -313,8 +313,8 @@
     <script>
 
         $.ajax({
-            url: 'http://localhost:3000/users/allinfo/2',
-            //url: 'http://localhost:3000/users/allinfo/{{user.userId}}',
+            //url: 'http://localhost:3000/users/allinfo/2',
+            url: 'http://localhost:3000/users/allinfo/{{user.userId}}',
 
             method: 'GET'
         }).then(function (data) {
