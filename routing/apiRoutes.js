@@ -52,9 +52,10 @@ module.exports = function (app) {
                             req.session.username = rows[0].username;
                             //res.redirect('/start')
                             if (rows[0].isABusiness === 1)
-                                res.render("businesshome", { user: req.session.username })
-                            else
-                                res.render("userhome", { user: req.session.username })
+                            res.render("businesshome",{connected:req.session.username, user: results[0]})
+                            //console.log(results[0])
+                        else
+                            res.render("userhome",{connected:req.session.username, user: results[0]})
                         })
                     }
                 })
@@ -89,10 +90,10 @@ module.exports = function (app) {
                         req.session.email = results[0].email;
                         req.session.username = results[0].username;
                         if (results[0].isABusiness === 1)
-                            res.render("businesshome",{connected:req.session.username, user: results[0]})
-                            //console.log(results[0])
-                        else
-                            res.render("userhome",{connected:req.session.username, user: results[0]})
+                        res.render("businesshome",{connected:req.session.username, user: results[0]})
+                        //console.log(results[0])
+                    else
+                        res.render("userhome",{connected:req.session.username, user: results[0]})
                     }
                     else {
                         res.status(500).send('Invalid password... ');

@@ -18,7 +18,8 @@ $(document).ready(function () {
             data: data,
             success: function (responce) {
                 document.write(responce);
-                location.reload(responce);
+                document.close();
+                //location.reload(responce);
             },
             error: function (error) {
 
@@ -42,8 +43,10 @@ $(document).ready(function () {
             type: "POST",
             data: data,
             success: function (responce) {
+               // document.open('text/plain');
                 document.write(responce)
-                location.reload(responce)
+                //location.reload(responce)
+                document.close();
             },
             error: function (error) {
                 alert(error.responseText)
@@ -56,6 +59,7 @@ $(document).ready(function () {
         $.ajax("/logout", {
             type: "Get",
             success: function (responce) {
+              
                 document.write(responce)
                 location.reload(responce)
             }
