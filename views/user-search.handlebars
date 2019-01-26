@@ -15,11 +15,11 @@
     }
 
     .entireUser {
-        border: 1px ridge rgb(183, 228, 236);
-        border: 2px ridge white;
-        width: 500px;
+        border: 5px ridge rgb(183, 228, 236);
+        width: 600px;
         background-color: white;
-        margin: 10px;
+        margin: 15px;
+        padding: 25px;
     }
 
     .businessName, .userInfo {
@@ -27,10 +27,9 @@
         font-size: 30px;
         font-weight: bold;
         font-family: "Gruppo", cursive;
-        padding: 5px;
-        margin: 2px;
+        padding: 10px 15px 15px 15px;
+        margin-bottom: 10px;
         background: rgb(183, 228, 236);
-        width: 480px;
         border: 2px 2px white;
         text-shadow: 2px 2px white;
     }
@@ -38,13 +37,10 @@
 
     .jobTitle {
         color: rgb(103, 103, 182);
-        font-size: 20px;
+        font-size: 25px;
         font-family: "Gruppo", cursive;
-        /* padding: 5px;
-        margin-top: 5px; */
-        height: 20px;
-        width: 480px;
-        background: white;
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
 
     .desc {
@@ -52,8 +48,8 @@
         font-size: 18px;
         font-family: "Gruppo", cursive;
         font-weight: bold;
-        padding: 5px;
-        width: 480px;
+        padding: 15px;
+        width: 550px;
         background: rgb(224, 245, 247);
     }
 </style>
@@ -63,6 +59,11 @@
         <div id='content'></div>
     </center>
 
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script type='text/javascript'>
 
         console.log("This page displays the results when a user searches for businesses by category. Will show all businesses in the category selected, and if a business is clicked it will redirect the user to that business' page via 'user-business.handlebars'");
@@ -76,36 +77,28 @@
         }).then(function (data) {
             var count = 0;
 
-
             //ALL BUSINESSES
             var $entireuserdiv;
             var $businessname;
             var $category;
             var $description;
 
-
-
             for (var i = 0; i < data.length; i++) {
                 console.log(data[i].category_name);
-
 
                 //info to display all the businesses
                 console.log(data[i].business_name);
 
                 $entireuserdiv = $("<div>");
-                // $username = $("<div>");
-                $businessname = $("<div>");
+                $businessname = $("<a>");
                 $category = $("<div>");
                 $description = $("<div>");
-                // $email = $("<div>");
 
                 $entireuserdiv.attr('class', 'entireUser');
+                $businessname.attr('href', '/user-business');
 
                 $businessname.attr('class', 'businessName');
                 $businessname.text(data[i].business_name);
-
-                // $username.attr('class', 'userInfo');
-                // $username.text(data[i].username);
 
                 $category.attr('class', 'jobTitle');
                 $category.text(data[i].category_name);
@@ -119,7 +112,6 @@
                 $entireuserdiv.append($businessname, "<br>", $category, "<br>", $description);
 
                 $("#content").append($entireuserdiv);
-
             }
 
 
