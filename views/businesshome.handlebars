@@ -1,17 +1,227 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giggit</title>
 </head>
+
+<style>
+    * {
+        font-family: 'gruppo', cursive;
+    }
+
+    /* Column sizing... total= 86%. Negative space= 14% */
+    .col {
+        float: left;
+        margin-top: 4%;
+    }
+
+    #leftcol {
+        width: 35%;
+        margin-left: 4%;
+    }
+
+    #rightcol {
+        width: 51%;
+        margin-left: 10%;
+    }
+
+    /* Display username, email, and image in upper left area of the page*/
+    #businessNameDisplay {
+        border: 3px dashed rgb(188, 248, 186);
+        border-top-left-radius: 100%;
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+
+    #businessnamediv {
+        font-size: 40px;
+        color: rgb(49, 136, 165);
+    }
+
+    #businesscategorydiv {
+        font-size: 30px;
+        color: rgb(177, 225, 241);
+        padding-left: 15px;
+    }
+
+    #globeImg {
+        height: 80px;
+    }
+
+    #ratingsdiv {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 8%;
+    }
+
+    .starRating {
+        height: 30px;
+    }
+
+    /* styles for business jobs table */
+
+    #jobstableTitle {
+        font-size: 40px;
+        color: rgb(49, 136, 165);
+        border: 2px dashed rgb(177, 225, 241);
+        border-bottom: 2px dashed white;
+        padding-right: 30%;
+        padding-left: 30%;
+    }
+
+    .jobscol {
+        float: left;
+        width: 33%;
+    }
+
+    .colTitle {
+        color: rgb(49, 136, 165);
+        font-size: 25px;
+        font-weight: bold;
+        border-bottom: 1px ridge rgb(183, 232, 248);
+        padding: 5px;
+    }
+
+    .cell {
+        font-size: 18px;
+        border-bottom: 1px ridge rgb(230, 248, 253);
+        padding-left: 8px;
+        margin-top: 4px;
+        padding-bottom: 2px;
+        height: 30px;
+        color: rgb(8, 8, 59);
+    }
+
+    .jobcostC {
+        color: blue;
+    }
+
+    .quoteinput {
+        width: 50px;
+    }
+
+    .quotesubmit {
+        background: rgb(195, 233, 243);
+        border: 2px groove rgb(212, 236, 243);
+        text-shadow: 1px 1px white;
+    }
+    .quotesubmit:hover {
+        background: rgb(34, 121, 143);
+        color: white;
+        text-shadow: none;
+        border-style: ridge;
+    }
+
+    .checkmark {
+        height: 15px;
+    }
+
+</style>
+
 <body>
-    
-This is the business home page
+
+
+
+    <div class="row">
+
+        {{!-- LEFT COLUMN: BUSINESS INFO, BUSINESS RATING AND LINK TO FULL REVIEWS --}}
+        <div class="col" id='leftcol'>
+
+            {{!-- Div for business name and email --}}
+            <div id='businessNameDisplay'>
+                <h3 id='businessnamediv'>
+                    <img src="https://i.imgur.com/ITgiiKr.png" id='globeImg'>
+                    Business Name {{businesses.business_name}} </h3>
+                <h4 id='businesscategorydiv'>Type of Business{{categories.category_name}}</h4>
+            </div>
+            {{!-- star rating goes here, need to "GET" jobs.rating integer and convert the number to number of
+            .starRating img --}}
+            <div id='ratingsdiv'>
+                <center>
+                    <img src='https://i.imgur.com/vwpthwu.png' class='starRating'>
+                    <img src='https://i.imgur.com/vwpthwu.png' class='starRating'>
+                    <img src='https://i.imgur.com/vwpthwu.png' class='starRating'>
+                    <img src='https://i.imgur.com/vwpthwu.png' class='starRating'> {{jobs.rating_convertToImages}}
+                    <a href='/business-reviews' id='reviewLink'>View More...</a>
+                </center>
+            </div>
+
+        </div>
+
+        {{!-- RIGHT COLUMN: BUSINESS JOBS TABLE --}}
+        <div class="col" id='rightcol'>
+            <center>
+                {{!-- We need to "GET" this info using handlebars, these tags are temporary dummy tags until we have
+                real ones --}}
+
+                <div class='row' id='businessjobstable'><span id='jobstableTitle'>My Gigs</span><br><br>
+                    {{!-- COLUMN 1: "Customer", GET info from users.username to display customers who requested a quote
+                    --}}
+                    <div class="jobscol">
+                        <div class='colTitle'>Customer</div>
+                        <div class="cell jobcustomerC">Guy{{users.username1}}</div>
+                        <div class="cell jobcustomerC">Eddy {{users.username2}}</div>
+                        <div class="cell jobcustomerC">Martin {{users.username3}}</div>
+                        <div class="cell jobcustomerC">Sheila{{users.username4}}</div>
+                        <div class="cell jobcustomerC">Asha {{users.username5}}</div>
+                        <div class="cell jobcustomerC">Drake {{users.username6}}</div>
+                    </div>
+                    {{!-- COLUMN 2: "Estimate", GET info from jobs.cost --}}
+                    {{!-- If business has sent quote, we will display the amount in column 2: "Estimate" --}}
+                    {{!-- If business hasn't sent quote,
+                    1. we generate a form to submit a quote in col2
+                    2. we store the value they submit in mysql jobs.cost table with "req.query.newquote"
+                    --->We NEED A ROUTE FOR ADDING QUOTES TO JOBS TABLE, then we can update form action route
+                    --->The route should post the quote to jobs.cost and then redirect user back to
+                    businesshome.handlebars
+                    3. after they submit the quote, refresh this page with col2 updated, displaying the new
+                    estimate--}}
+                    <div class="jobscol">
+                        <div class='colTitle'>Estimate</div>
+                        <div class="cell jobcostC">$400 {{jobs.cost1}}</div>
+                        <div class="cell jobcostC">$300 {{jobs.cost2}}</div>
+                        <div class="cell jobcostC">
+                            <form class='sendquoteForm' action='/' method='POST'>
+                                <input class='quoteinput' type='number' min='0' name='newquote'>
+                                <input type='submit' value='Give Quote' class='quotesubmit'>
+                            </form>{{jobs.cost3}}
+                        </div>
+                        <div class="cell jobcostC">
+                            <form class='sendquoteForm' action='/' method='POST'>
+                                <input class='quoteinput' type='number' min='0' name='newquote'>
+                                <input type='submit' value='Give Quote' class='quotesubmit'>
+                            </form>{{jobs.cost4}}
+                        </div>
+                        <div class="cell jobcostC">$550 {{jobs.cost5}}</div>
+                        <div class="cell jobcostC">$200 {{jobs.cost6}}</div>
+                    </div>
+                    {{!-- COLUMN 3: "Gig Status", GET info from jobs.jobStatus --}}
+                    {{!-- If jobStatus is 'Completed' we generate the text AND img .checkmark in .jobstatusC --}}
+                    <div class="jobscol">
+                        <div class="colTitle">Gig Status</div>
+                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'> {{jobs.jobStatus1}}</div>
+                        <div class="cell jobstatusC">Pending User Acceptance{{jobs.jobStatus2}}</div>
+                        <div class="cell jobstatusC">Pending Quote {{jobs.jobStatus3}}</div>
+                        <div class="cell jobstatusC">Pending Quote {{jobs.jobStatus4}}</div>
+                        <div class="cell jobstatusC">Cancelled {{jobs.jobStatus5}}</div>
+                        <div class="cell jobstatusC">Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'> {{jobs.jobStatus6}}</div>
+                    </div>
+
+                </div>
+            </center>
+        </div>
+
+    </div>
+
+
 
 
 </body>
-</html>
 
