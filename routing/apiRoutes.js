@@ -308,13 +308,20 @@ module.exports = function (app) {
 
 
 //a route for all info for use in ajax calls (added by alyssa 1-20-19)
+//IMPORTANT ROUTE - 
     app.get('/alldata', function (req, res) {
       connection.query('SELECT b.businessId, b.business_name, b.business_bio, b.categoryId, c.category_name, j.jobId, j.rating, j.review, j.jobStatus, j.cost, u.userId, u.username FROM businesses b LEFT JOIN categories c ON c.categoryId=b.categoryId LEFT JOIN jobs j ON j.businessId=b.businessId LEFT JOIN users u ON j.userId=u.userId', function (error, results, fields) {
               if (error) throw error;
               res.json(results);
           })
   })
-
+//This route is being used in user-search and business-search. If you edit or delete this route, please make adjustments to the ajax scripts in handlebars pages to make sure they still work
+    app.get('/businesscategory', function(req, res){
+      connection.query('SELECT * FROM businesses LEFT JOIN categories ON businesses.categoryId=categories.categoryId', function(error, results, fields){
+        if (error) throw error;
+        res.json(results);
+      })
+    })
 
 }
 
