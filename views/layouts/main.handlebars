@@ -131,10 +131,10 @@
                 {{!-- LOGOUT ICON --}}
                 {{!-- ***************************** --}}
                 {{#if user.isABusiness}}
-                <span class='iconImage'><a href='/logout'><img src="https://i.imgur.com/qAF51nm.png" title="logout"
+                <span class='iconImage'><a href='/logout' id='logoutlink'><img src="https://i.imgur.com/qAF51nm.png" title="logout"
                             class='iconImage' id='logout-icon'></span>
                 {{else}}
-                <span class='iconImage'><a href='/logout'><img src="https://i.imgur.com/qAF51nm.png" title="logout"
+                <span class='iconImage'><a href='/logout' id='logoutlink'><img src="https://i.imgur.com/qAF51nm.png" title="logout"
                             class='iconImage' id='logout-icon'></a></span>
                 {{/if}}
 
@@ -179,10 +179,10 @@
                 {{!-- HOME ICON --}}
                 {{!-- ******************* --}}
                 {{#if user.isABusiness}}
-                <span class='iconImage'><a href='/businesshome'><img src='https://i.imgur.com/YCZLCM3.png' title='home'
+                <span class='iconImage'><a href='/business-home'><img src='https://i.imgur.com/YCZLCM3.png' title='home'
                             class='iconImage' id='home-icon'></a></span>
                 {{else}}
-                <span class='iconImage'><a href='/userhome'><img src='https://i.imgur.com/YCZLCM3.png' title='home'
+                <span class='iconImage'><a href='/user-home'><img src='https://i.imgur.com/YCZLCM3.png' title='home'
                             class='iconImage' id='home-icon'></a></span>
                 {{/if}}
 
