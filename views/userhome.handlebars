@@ -187,7 +187,7 @@
                 <h4 id='emaildisplay'>ExampleEmail@Examples.com{{email}}</h4>
             </div>
 
-            {{!-- Div for table of user reveiws --}}
+            {{!-- Div for table of user reviews --}}
             <div id='user-reviews'>
                 <div id='reviewHead' class='tableHead'>My Reviews</div><br>
                 <div class="row">
@@ -233,45 +233,45 @@
                     {{!-- Job Table Column 1: Business Name, "Gig" --}}
                     <div class="col jobtable">
                         <div id='jobnames' class='colHead'>Gig</div><br>
-                        <div class='jobItem cell'> example text {{business-one}}</div><br>
+                        {{!-- <div class='jobItem cell'> example text {{business-one}}</div><br>
                         <div class='jobItem cell'> example text {{business-two}}</div><br>
                         <div class='jobItem cell'> example text {{business-three}}</div><br>
                         <div class='jobItem cell'> example text {{business-four}}</div><br>
-                        <div class='jobItem cell'> example text {{business-five}}</div>
+                        <div class='jobItem cell'> example text {{business-five}}</div> --}}
                     </div>
                     {{!-- Job Table Column 2: Quotes / Cost, "Estimate"--}}
                     <div class="col jobtable">
                         <div id='jobnums' class='colHead'>Estimate</div><br>
-                        <div class='costcell jobItem cell'> $400{{cost-one}}</div><br>
+                        {{!-- <div class='costcell jobItem cell'> $400{{cost-one}}</div><br>
                         <div class='costcell jobItem cell'> $750{{cost-two}}</div><br>
                         <div class='costcell jobItem cell'> Quote Requested{{cost-three}}</div><br>
                         <div class='costcell jobItem cell'> $500{{cost-four}}</div><br>
-                        <div class='costcell jobItem cell'> $600{{cost-five}}</div>
+                        <div class='costcell jobItem cell'> $600{{cost-five}}</div> --}}
                     </div>
                     {{!-- Job Table Column 3: job status, "Status" --}}
                     {{!-- If jobStatus = 'Completed' we generate the text 'Completed' AND an image of a checkmark with
                     src='https://i.imgur.com/goSfMfs.png' and class='checkmark' --}}
                     <div class="col jobtable">
-                        <div id='jobtext' class='colHead'>Status</div><br>
-                        <div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
+                        <div id='jscol' class='colHead'>Status</div><br>
+                        {{!-- <div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
                             {{status-one}}</div><br>
                         <div class='jobItem cell'> Confirmation needed {{status-two}}</div><br>
                         <div class='jobItem cell'> Pending {{status-three}}</div><br>
                         <div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'>
                             {{status-four}}</div><br>
-                        <div class='jobItem cell'> Cancelled {{status-five}}</div>
+                        <div class='jobItem cell'> Cancelled {{status-five}}</div> --}}
                     </div>
 
                     {{!-- Job Table Column 4: user takes action --}}
                     <div class="col jobtable">
                         <div id='jobtext' class='colHead'>Action</div><br>
-                        <div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a>
+                        {{!-- <div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a>
                             {{status-one}}</div><br>
                         <div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>
                             {{status-two}}</div><br>
                         <div class='jobItem cell'> NA {{status-three}}</div><br>
                         <div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a> {{status-four}}</div><br>
-                        <div class='jobItem cell'> NA {{status-five}}</div>
+                        <div class='jobItem cell'> NA {{status-five}}</div> --}}
                     </div>
 
                 </div>
@@ -310,7 +310,71 @@
         </div>
     </div>
 
+    {{!-- Ajax call to get all business info for the specified business and dynamically construct the jobs table --}}
+    <script>
 
+        $.ajax({
+            url: 'http://localhost:3000/users/allinfo/2',
+            //url: 'http://localhost:3000/users/allinfo/{{user.userId}}',
+
+            method: 'GET'
+        }).then(function (data) {
+
+            console.log(data);
+
+            var tcatrow;
+            var tcostrow;
+            var tjsrow;
+            var jobStatusText = "";
+            var jobAction = "";
+
+
+            $.each(data, function (i, data) {
+
+                // if else statements based on jobStatus to determine what to display
+                if (parseInt(data.jobStatus) === 1) { 
+                    jobStatusText = "Quote Requested";
+                    jobAction = "<div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a>{{status-one}}</div><br>"
+                                            }
+                else if (parseInt(data.jobStatus) === 2) {
+                    jobStatusText = "Confirmation Needed"
+                    jobAction = "<div class='jobItem cell'> <button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>{{status-two}}</div><br>"
+
+                }
+                else if (parseInt(data.jobStatus) === 3) {
+                    jobStatusText = "Completed"
+                    jobAction = "<div class='jobItem cell'> NA {{status-three}}</div><br>"
+                }
+                else if (parseInt(data.jobStatus) === 4) {
+                    jobStatusText = "Cancelled"
+                    jobAction = "<div class='jobItem cell'> <a href='/user-review' class='cellbtn ratenow'>Rate</a> {{status-four}}</div><br>"
+                }
+                // construct the div to display the gig category
+                tcatrow = $('<div>'),
+                    $(tcatrow).html(data.business_name),
+                    $(tcatrow).attr('class', 'jobItem cell'),
+                    $("#jobnames").append(tcatrow),
+
+                // construct the div to display the job status
+                tjsrow = $('<div>'),
+                    $(tjsrow).html(jobStatusText),
+                    $(tjsrow).attr('class', 'jobItem cell'),
+                    $("#jscol").append(tjsrow)
+                   
+                // display job cost in the table
+                tcostrow = $('<div>')
+                    $(tcostrow).html(data.cost)
+                    $(tcostrow).attr('class', 'costcell jobItem cell')
+                    $("#jobnums").append(tcostrow)
+
+                // display Job Action in the table
+                tactionrow = $('<div>')
+                    $(tactionrow).html(jobAction)
+                    $(tactionrow).attr('class', 'jobItem cell')
+                    $("#jobtext").append(jobAction)
+            });
+        });
+    </script>
 
 <script type='text/javascript'>
 console.log('USERHOME: This is the homepage/profile for non-business users.');
