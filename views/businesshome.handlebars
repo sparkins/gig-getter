@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,8 +126,6 @@
 
 <body>
 
-
-
     <div class="row">
 
         {{!-- LEFT COLUMN: BUSINESS INFO, BUSINESS RATING AND LINK TO FULL REVIEWS --}}
@@ -216,18 +213,6 @@
         </div>
 
     </div>
-    {{!--
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">JobID#</th>
-                <th scope="col">Business Name</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Job Status</th>
-            </tr>
-        </thead>
-    </table> --}}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -236,7 +221,6 @@
     <script>
 
         $.ajax({
-            //url: 'http://localhost:3000/business/allinfo/1',
             url: 'http://localhost:3000/business/allinfo/{{user.userId}}',
 
             method: 'GET'
@@ -253,30 +237,30 @@
 
                 var jobId = data.jobId;
                 // if else statements based on jobStatus to determine what to display
-                if (parseInt(data.jobStatus) === 1) { 
+                if (parseInt(data.jobStatus) === 1) {
                     jobStatusText = "Pending";
-                    console.log (jobId);
+                    console.log(jobId);
                     tcostrow = $('<div>')
-                        $(tcostrow).attr('class', 'cell jobcostC')
-                        $(tcostrow).html("<form class='sendquoteForm' action='/jobs/quote/'+newquote+'/'+jobId' method='POST'><input class='quoteinput' type='number' min='0' name='newquote'><input type='submit' value='Give Quote' class='quotesubmit'></form>")
+                    $(tcostrow).attr('class', 'cell jobcostC')
+                    $(tcostrow).html(`<form class='sendquoteForm' action='/jobs/quote/${jobId}' method='POST'><input class='quoteinput' type='number' min='0' name='newquote'><input type='submit' value='Give Quote' class='quotesubmit'></form>`)
                 }
                 else if (parseInt(data.jobStatus) === 2) {
                     jobStatusText = "Confirmation Needed"
                     tcostrow = $('<div>')
-                        $(tcostrow).html(data.cost)
-                        $(tcostrow).attr('class', 'cell jobcostC')
+                    $(tcostrow).html(data.cost)
+                    $(tcostrow).attr('class', 'cell jobcostC')
                 }
                 else if (parseInt(data.jobStatus) === 3) {
                     jobStatusText = "<div class='jobItem cell'> Completed <img class='checkmark' src='https://i.imgur.com/goSfMfs.png'></div>"
                     tcostrow = $('<div>')
-                        $(tcostrow).html(data.cost)
-                        $(tcostrow).attr('class', 'cell jobcostC')
+                    $(tcostrow).html(data.cost)
+                    $(tcostrow).attr('class', 'cell jobcostC')
                 }
                 else if (parseInt(data.jobStatus) === 4) {
                     jobStatusText = "Cancelled"
                     tcostrow = $('<div>')
-                        $(tcostrow).html(data.cost)
-                        $(tcostrow).attr('class', 'cell jobcostC')
+                    $(tcostrow).html(data.cost)
+                    $(tcostrow).attr('class', 'cell jobcostC')
                 }
                 // construct the div to display the customer name
                 tcustrow = $('<div>'),
@@ -284,18 +268,19 @@
                     $(tcustrow).attr('class', 'cell jobcustomerC'),
                     $("#custcol").append(tcustrow),
 
-                // construct the div to display the job status
-                tjsrow = $('<div>'),
+                    // construct the div to display the job status
+                    tjsrow = $('<div>'),
                     $(tjsrow).html(jobStatusText),
                     $(tjsrow).attr('class', 'cell jobstatusC'),
                     $("#jscol").append(tjsrow)
-                   
+
                 // display job cost in the table
                 $("#costcol").append(tcostrow)
 
                 $('#businesscategorydiv').html(data.category_name);
                 //console.log(data.business_name+":"+data.category_name);
                 $('#businessName').html(data.business_name);
+
             });
         });
     </script>
@@ -304,4 +289,3 @@
         console.log('BUSINESSHOME: This is the homepage/profile for business users.')
     </script>
 </body>
-

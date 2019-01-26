@@ -314,15 +314,17 @@ module.exports = function (app) {
       })
   })
 
-  // put route to update a job with a QUOTE from the business
-  app.put('/jobs/quote/:cost/:jobId', function (req, res) {
-    connection.query("UPDATE jobs SET cost = ?, jobStatus = 2 WHERE jobId = ?", [req.params.cost, req.params.jobId]
-      , function (error, results) {
-        console.log(results);
-        if (error) throw error;
-        res.json("Updated Job #" + req.params.jobId + " with quote for $" + req.params.cost);
-      })
-  })
+    // put route to update a job with a QUOTE from the business
+    app.post('/jobs/quote/:jobId', function (req, res) {
+        connection.query("UPDATE jobs SET cost = ?, jobStatus = 2 WHERE jobId = ?", [req.body.newquote, req.params.jobId]
+            , function (error, results) {
+                console.log(results);
+                if (error) throw error;
+                console.log("Updated Job #" + req.params.jobId + " with quote for $" + req.body.newquote);
+                // res.json("Updated Job #" + req.params.jobId + " with quote for $" + req.body.newquote);
+            })
+    })
+
 
   // put route to update a job when the user ACCEPTS the job
   app.put('/jobs/accept-job/:jobId', function (req, res) {
