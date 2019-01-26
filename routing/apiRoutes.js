@@ -86,10 +86,11 @@ module.exports = function (app) {
       else {
         bcrypt.compare(req.body.password, results[0].password_hash, function (err, result) {
           if (result == true) {
+            req.session.isABusiness = results[0].isABusiness;
             req.session.user_id = results[0].id;
             req.session.email = results[0].email;
             req.session.username = results[0].username;
-            if (results[0].isABusiness === 1){
+            if (req.session.isABusiness === 1){
               res.render("businesshome", { connected: req.session.username, user: results[0] });
 
               app.get('/business-edit', function (req, res) {
