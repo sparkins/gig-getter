@@ -18,8 +18,8 @@ $(document).ready(function () {
             data: data,
             success: function (responce) {
                 document.write(responce);
-               // document.close();
-                location.reload(responce);
+                document.close();
+                //location.reload(responce);
             },
             error: function (error) {
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     })
 
     // Login 
-     $(".loginform").on("submit", function (event) {
+    $(".loginform").on("submit", function (event) {
         event.preventDefault();
         var email = $("#emaillogin").val().trim();
         var password = $("#passlogin").val().trim();
@@ -40,20 +40,20 @@ $(document).ready(function () {
             password: password
         }
         $.ajax("/signin", {
-            type: "post",
+            type: "POST",
             data: data,
             success: function (responce) {
-               //  document.open('text/plain');
+               // document.open('text/plain');
                 document.write(responce)
                 //location.reload(responce)
-               document.close(); 
+                document.close();
             },
             error: function (error) {
                 alert(error.responseText)
             },
         })
     })
- 
+
     // logout
     $("#logoutlink").on("click", function () {
         console.log('alert');
