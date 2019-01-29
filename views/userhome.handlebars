@@ -182,7 +182,8 @@
 
             {{!-- Div for username and email --}}
             <div id='userDisplayName'>
-                <h3 id='namedisplay'><img src="https://i.imgur.com/ITgiiKr.png" id='userdisplayimage'> {{user.username}} </h3>
+                <h3 id='namedisplay'><img src="https://i.imgur.com/ITgiiKr.png" id='userdisplayimage'>
+                    {{user.username}} </h3>
                 <h4 id='emaildisplay'>{{user.email}}</h4>
             </div>
 
@@ -193,14 +194,14 @@
                     {{!-- Review Table Column 1: Business Name --}}
                     <div class="col ratetable">
                         <div id='ratenames' class='colHead'>Business Name</div><br>
-                        <div class='rateItem cell'>Pauls Painting Services</div><br>
+                        {{!-- <div class='rateItem cell'>Pauls Painting Services</div><br>
                         <div class='rateItem cell'>Megan's Mongolian Massages</div><br>
-                        <div class='rateItem cell'>Craig's Carpet Cleaning</div>
+                        <div class='rateItem cell'>Craig's Carpet Cleaning</div> --}}
                     </div>
                     {{!-- Review Table Column 2: Number Rating (aka Star Rating) --}}
                     <div class="col ratetable">
                         <div id='ratenums' class='colHead'>Star Rating</div><br>
-                        <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
+                        {{!-- <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
                                 src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
                                 class='ratestar'>
                             {{rating-one}}</div><br>
@@ -211,16 +212,13 @@
                         <div class='rateItem cell'> <img src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img
                                 src='https://i.imgur.com/vwpthwu.png' class='ratestar'><img src='https://i.imgur.com/vwpthwu.png'
                                 class='ratestar'><img src='https://i.imgur.com/vwpthwu.png' class='ratestar'>
-                            {{rating-two}}</div><br>
+                            {{rating-two}}</div><br> --}}
                     </div>
+
                     {{!-- Review Table Column 3: Detailed Review Text --}}
                     <div class="col ratetable">
                         <div id='ratetext' class='colHead'>Review</div><br>
-                        <div class='rateItem cell'>Awesome paint job...</div><br>
-                        <div class='rateItem cell'>First time and wont be the last...</div><br>
-                        <div class='rateItem cell'>Craig was even able to get rid...</div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -268,7 +266,8 @@
             -.accept Button will:
             1. Update "jobs.jobStatus" in mySql to "Completed"
             2. Refresh this userhome page
-            3. Display new job status "Completed" AND img src='https://i.imgur.com/goSfMfs.png' with class='checkmark' in Column 3 on this page
+            3. Display new job status "Completed" AND img src='https://i.imgur.com/goSfMfs.png' with class='checkmark'
+            in Column 3 on this page
             4. Update Column 4 to a ".ratenow" button
             ---> .ratenow btn saves this.business params and redirects to user-review.handlebars
             -.deny Button will:
@@ -299,20 +298,61 @@
 
             console.log(data);
 
+            for (var count=5;count>0;count--) {
+                var lastFiveReviews = Object.values(data)[Object.values(data).length - count];
+                console.log("Last "+count+": ", lastFiveReviews.review);
+
+                // Ratings table
+                if (lastFiveReviews.review !== "") {
+                    rbusinessrow = $('<div>')
+                        $(rbusinessrow).html(lastFiveReviews.business_name)
+                        $(rbusinessrow).attr('class', 'rateItem cell')
+                        $("#ratenames").append(rbusinessrow)
+
+                    console.log("business name: " + lastFiveReviews.business_name)
+                    console.log("rating: " + lastFiveReviews.rating)
+                    console.log("review: " + lastFiveReviews.review)
+
+                    //display rating in stars
+                    var ratingimg;
+                    for (var i = 1; i <= parseInt(lastFiveReviews.rating); i++) {
+                        ratingimg = $('<div>')
+                        $(ratingimg).attr('class', 'ratestar')
+                        ratingimg.append("<img src='https://i.imgur.com/vwpthwu.png'");
+                        //console.log("ratingimg: ", ratingimg);
+                    }
+
+                    //Display Rating
+                    rratingrow = $('<div>')
+                    //$(rbusinessrow).html(ratingimg)
+                    $(rratingrow).html(lastFiveReviews.rating)
+                    $(rratingrow).attr('class', 'rateItem cell')
+                    $("#ratenums").append(rratingrow)
+
+                    //Display reviews
+                    rreviewrow = $('<div>')
+                    $(rreviewrow).html(lastFiveReviews.review.substring(0, 15)+"...")
+                    $(rreviewrow).attr('class', 'rateItem cell')
+                    $("#ratetext").append(rreviewrow)
+                }
+            }
+
             var tcatrow;
             var tcostrow;
             var tjsrow;
             var jobStatusText = "";
             var jobAction = "";
-
+            var jobId;
 
             $.each(data, function (i, data) {
 
+                jobId = data.jobId;
+
                 // if else statements based on jobStatus to determine what to display
-                if (parseInt(data.jobStatus) === 1) { 
+                if (parseInt(data.jobStatus) === 1) {
                     jobStatusText = "Quote Requested";
                     jobAction = "<a href='/user-review' class='cellbtn ratenow'>Rate</a>"
-                                            }
+                }
                 else if (parseInt(data.jobStatus) === 2) {
                     jobStatusText = "Confirmation Needed"
                     jobAction = "<button class='cellbtn accept'>Accept</button><button class='cellbtn deny'>Deny</button>"
@@ -324,38 +364,38 @@
                 else if (parseInt(data.jobStatus) === 4) {
                     jobStatusText = "Cancelled"
                     jobAction = "NA"
-
                 }
+
                 // construct the div to display the gig category
                 tcatrow = $('<div>'),
                     $(tcatrow).html(data.business_name),
                     $(tcatrow).attr('class', 'jobItem cell'),
                     $("#jobnames").append(tcatrow),
 
-                // construct the div to display the job status
-                tjsrow = $('<div>'),
+                    // construct the div to display the job status
+                    tjsrow = $('<div>'),
                     $(tjsrow).html(jobStatusText),
                     $(tjsrow).attr('class', 'jobItem cell'),
                     $("#jscol").append(tjsrow)
-                   
+
                 // display job cost in the table
                 tcostrow = $('<div>')
-                    $(tcostrow).html(data.cost)
-                    $(tcostrow).attr('class', 'costcell jobItem cell')
-                    $("#jobnums").append(tcostrow)
+                $(tcostrow).html(data.cost)
+                $(tcostrow).attr('class', 'costcell jobItem cell')
+                $("#jobnums").append(tcostrow)
 
                 // display Job Action in the table
                 tactionrow = $('<div>')
-                    $(tactionrow).html(jobAction)
-                    $(tactionrow).attr('class', 'jobItem cell')
-                    $("#jobtext").append(tactionrow)
+                $(tactionrow).html(jobAction)
+                $(tactionrow).attr('class', 'jobItem cell')
+                $("#jobtext").append(tactionrow)
             });
         });
     </script>
 
-<script type='text/javascript'>
-console.log('USERHOME: This is the homepage/profile for non-business users.');
-</script>
+    <script type='text/javascript'>
+        console.log('USERHOME: This is the homepage/profile for non-business users.');
+    </script>
 </body>
 
 </html>

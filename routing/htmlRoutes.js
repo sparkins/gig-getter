@@ -13,10 +13,6 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, '/../public/home.html'))
   });
 
-  app.get('/simon', function (req, res) {
-    res.sendFile(path.join(__dirname, '/../public/userhome-simon.html'))
-  });
-
   app.get('/home', function (req, res) {
     if (req.session.user_id && req.cookies.user_sid) {
       res.render(path.join(__dirname, '/../views/home.handlebars'))
@@ -26,23 +22,23 @@ module.exports = function (app) {
     }
   });
 
-  // app.get('/business-home', function (req, res) {
-  //   if (req.session.user_id && req.cookies.user_sid) {
-  //     res.render(path.join(__dirname, '/../views/businesshome.handlebars'));
-  //   }
-  //   else {
-  //     res.render("home")
-  //   }
-  // })
+  app.get('/business-home', function (req, res) {
+    if (req.session.user_id && req.cookies.user_sid) {
+      res.render(path.join(__dirname, '/../views/businesshome.handlebars'));
+    }
+    else {
+      res.render("home")
+    }
+  })
 
-  // app.get('/user-home', function (req, res) {
-  //   if (req.session.user_id && req.cookies.user_sid) {
-  //     res.render(path.join(__dirname, '/../views/userhome.handlebars'));
-  //   }
-  //   else {
-  //     res.render("home")
-  //   }
-  // })
+  app.get('/user-home', function (req, res) {
+    if (req.session.user_id && req.cookies.user_sid) {
+      res.render(path.join(__dirname, '/../views/userhome.handlebars'));
+    }
+    else {
+      res.render("home")
+    }
+  })
 
 
 // Creating routes to view each page so I can work on them -Alyssa

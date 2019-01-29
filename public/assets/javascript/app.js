@@ -16,8 +16,8 @@ $(document).ready(function () {
         $.ajax("/signup", {
             type: "POST",
             data: data,
-            success: function (responce) {
-                document.write(responce);
+            success: function (response) {
+                document.write(response);
                 document.close();
                 //location.reload(responce);
             },
@@ -42,10 +42,10 @@ $(document).ready(function () {
         $.ajax("/signin", {
             type: "POST",
             data: data,
-            success: function (responce) {
+            success: function (response) {
                // document.open('text/plain');
-                document.write(responce)
-                //location.reload(responce)
+                document.write(response)
+                //location.reload(response)
                 document.close();
             },
             error: function (error) {
@@ -59,12 +59,19 @@ $(document).ready(function () {
         console.log('alert');
         $.ajax("/logout", {
             type: "Get",
-            success: function (responce) {
+            success: function (response) {
               
-                document.write(responce)
+                document.write(response)
                 document.close();
-                // location.reload(responce)
+                // location.reload(response)
             }
         })
     })
+
+    // Create a Review Page - user-review.handlebars
+    // $("#ursubmit").on("click", function () {
+    //     console.log('Review has been submitted');
+    //     //     type: "Post",
+    //     // })
+    // })
 })
