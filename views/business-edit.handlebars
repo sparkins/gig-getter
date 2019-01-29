@@ -118,8 +118,8 @@ label, .editlabel {
 
             {{!-- FORM 1: CHANGE USERNAME --}}
             <div id='editnameHeader' class='editHeaders'>Username</div>
-
-            <form id='useredit' class='editForm'>
+           {{!--  edit User name --}}
+            <form id='useredit1' class='editForm' >
                 {{!-- Left column: contains labels --}}
                 <div class="editcol left">
                     <div class='editlabel'>Current Username:</div><br>
@@ -127,11 +127,12 @@ label, .editlabel {
                 </div>
                 {{!-- Right column: contains input fields and current username --}}
                 <div class='editcol right'>
-                    <div class='currentinfo'>Example Name {{user}}</div><br>
-                    <input id='newusername' name='newusername' class='editinput'>
+                    <div class='currentinfo' >{{user.username}}</div><br>
+                    <input id='editnewusername' name='newusername' class='editinput'>
+                    <input id="userIdhiden" type="hidden" value={{user.userId}}>
                 </div>
                 {{!-- Submit button, center aligned via float --}}
-                <input type='submit' value='OK' class='editsubmit'>
+                <input type='submit' value='OK' class='editsubmit' id="editusersubmit">
             </form>
 
 
@@ -165,11 +166,12 @@ label, .editlabel {
                 </div>
                 {{!-- Right column: contains input fields and current email --}}
                 <div class='editcol right'>
-                    <div class='currentinfo'>Example@email.com {{email}}</div><br>
-                    <input id='newuseremail' name='newuseremail' class='editinput'>
+                    <div class='currentinfo'>{{user.email}}</div><br>
+                    <input id='editemail' name='newuseremail' class='editinput'>
+                    <input id="userIdhiden" type="hidden" value={{user.userId}}>
                 </div>
                 {{!-- Submit button, center aligned via float --}}
-                <input type='submit' value='OK' class='editsubmit'>
+                <input type='submit' value='OK' class='editsubmit' id="editemailsubmit">
             </form>
 
 
@@ -195,17 +197,19 @@ label, .editlabel {
             <form id='usereditpass' class='editForm'>
                 {{!-- Left column: contains labels --}}
                 <div class="editcol left">
-                    <label for='confirmpassword' class='editlabel'>Confirm Current Password:</label><br>
-                    <label for='newuserpassword' class='editlabel'>New Password:</label>
+                    <label for='currentpassword' class='editlabel'>Current Password:</label><br>
+                    <label for='newuserpassword' class='editlabel'>New Password:</label><br>
+                    <label for='confirmnewpassword' class='editlabel'>Confirm New Password:</label>
                 </div>
                 {{!-- Right column: contains input fields --}}
                 <div class='editcol right'>
-                    <input id='confirmpassword' name='confirmpassword' class='editinput' type='password'><br>
+                    <input id='currentpassword' name='confirmpassword' class='editinput' type='password'><br>
                     <input id='newuserpassword' name='newuserpassword' class='editinput' type='password'><br>
-                    <span id='passwordnote'>Passwords are case sensitive.</span>
+                    <input id='confirmuserpassword' name='confirmnewuserpassword' class='editinput' type='password'><br>
+                    <span  id='passwordnote'>Passwords are case sensitive.</span>
                 </div>
                 {{!-- Submit button, center aligned via float --}}
-                <input type='submit' value='OK' class='editsubmit'>
+                <input type='submit' value='OK' class='editsubmit' id="editpasswordsubmit">
             </form>
 
         </div>
