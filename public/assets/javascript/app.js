@@ -56,7 +56,6 @@ $(document).ready(function () {
 
     // logout
     $("#logoutlink").on("click", function () {
-        console.log('alert');
         $.ajax("/logout", {
             type: "Get",
             success: function (responce) {
@@ -66,5 +65,77 @@ $(document).ready(function () {
                 // location.reload(responce)
             }
         })
+    })
+
+    // Edit User Name
+    $("#editusersubmit").on("click",function (event) {
+        event.preventDefault();
+        var username = $("#editnewusername").val().trim();
+        var userId = $("#userIdhiden").val().trim();
+        var data = {
+                     username: username,
+                     userId : userId
+                   }
+        $.ajax("/editusername", {
+            type: "POST",
+            data: data,
+            success: function (responce) {
+               alert(error.responseText)
+            },
+            error: function (error) {
+                alert(error.responseText)
+            },
+        }) 
+    })
+
+    // Edit Email Address
+    $("#editemailsubmit").on("click",function (event) {
+        event.preventDefault();
+        var email = $("#editemail").val().trim();
+        var userId = $("#userIdhiden").val().trim();
+        var data = {
+                     email: email,
+                     userId : userId
+                   }
+        $.ajax("/editemail", {
+            type: "POST",
+            data: data,
+            success: function (responce) {
+               alert(error.responseText)
+            },
+            error: function (error) {
+                alert(error.responseText)
+            },
+        }) 
+    })
+
+     // Change password
+     $("#editpasswordsubmit").on("click",function (event) {
+        event.preventDefault();
+        var userId = $("#userIdhiden").val().trim();
+        var currentpassword = $("#currentpassword").val().trim();
+        var newpassword = $("#newuserpassword").val().trim();
+        var confirmpassword = $("#confirmuserpassword").val().trim();
+
+        if(newpassword === confirmpassword){
+        var data = {
+                     userId : userId,
+                     currentpassword : currentpassword,
+                     newpassword : newpassword
+                   }
+        $.ajax("/changepassword", {
+            type: "POST",
+            data: data,
+            success: function (responce) {
+               alert(error.responseText)
+            },
+            error: function (error) {
+                alert(error.responseText)
+            },
+        }) 
+    }
+    else{
+        alert("password dosn't match");
+    }
     })
 })
