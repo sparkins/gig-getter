@@ -109,12 +109,24 @@
             </select><br><br>
 
             <textarea id='userreview' name='userreview'>What was your experience with this business?</textarea><br>
-            <input type='submit' value="Submit" id='ursubmit'>
+            <input type='submit' value="Submit" id='ursubmit'> {{!-- action='/jobs/add-review/${jobId}' method='POST'>
+            --}}
         </form>
 
     </center>
 
-
+    {{!-- <script>
+        // Create a Review Page - user-review.handlebars
+        $("#ursubmit").on("click", function () {
+            console.log('Review has been submitted');
+            $.ajax({
+                url: '/jobs/add-review/${jobId}',
+                method: 'POST'
+            }).then(function (data) {
+                console.log(data);
+        })
+        })
+    </script> --}}
 
     <script type='text/javascript'>
         console.log('USER-REVIEW: A non-business user will be directed to this page when they want to rate and review a business.')

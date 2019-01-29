@@ -355,6 +355,18 @@ module.exports = function (app) {
       })
   })
 
+  //Post route to update a job and add a rating and review
+  app.post('/jobs/add-review/:jobId', function (req, res) {
+    connection.query("UPDATE jobs SET rating = ?, review = ? WHERE jobId = ?", [req.body.rating, req.body.review, req.params.jobId]
+      , function (error, results) {
+        console.log(results);
+        if (error) throw error;
+        console.log ("New review added for " + req.params.jobId);
+        res.render('userhome.handlebars', {connected: req.session.username, user: results[0] });
+
+      })
+  })
+
   // *************************************
   // ************ JOBS ROUTES ************
   // *************************************
