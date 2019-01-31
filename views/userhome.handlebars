@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Gig-getter User Home Page</title>
+
+    <link rel="stylesheet" href="/assets/css/userHome.css">
+
+
 </head>
 
-<style>
+{{!-- <style>
     * {
         font-family: 'gruppo', cursive;
     }
@@ -166,13 +170,9 @@
     #userdisplayimage {
         height: 80px;
     }
-</style>
-
-
+</style> --}}
 
 <body>
-
-
 
     {{!-- Creating two columns inside a row --}}
     <div class="row">
@@ -194,9 +194,6 @@
                     {{!-- Review Table Column 1: Business Name --}}
                     <div class="col ratetable">
                         <div id='ratenames' class='colHead'>Business Name</div><br>
-                        {{!-- <div class='rateItem cell'>Pauls Painting Services</div><br>
-                        <div class='rateItem cell'>Megan's Mongolian Massages</div><br>
-                        <div class='rateItem cell'>Craig's Carpet Cleaning</div> --}}
                     </div>
                     {{!-- Review Table Column 2: Number Rating (aka Star Rating) --}}
                     <div class="col ratetable">
@@ -345,8 +342,6 @@
             var jobId;
 
             $.each(data, function (i, data) {
-
-                jobId = data.jobId;
 
                 // if else statements based on jobStatus to determine what to display
                 if (parseInt(data.jobStatus) === 1) {
