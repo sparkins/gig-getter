@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Giggit</title>
+    <title>Giggit Business HOme Page</title>
+
+    <link rel="stylesheet" href="/assets/css/businessHome.css">
+
 </head>
 
-<style>
+{{!-- <style>
     * {
         font-family: 'gruppo', cursive;
     }
@@ -122,7 +125,7 @@
         height: 15px;
     }
 
-</style>
+</style> --}}
 
 <body>
 
@@ -245,7 +248,7 @@
                     $(tcostrow).html(`<form class='sendquoteForm' action='/jobs/quote/${jobId}' method='POST'><input class='quoteinput' type='number' min='0' name='newquote'><input type='submit' value='Give Quote' class='quotesubmit'></form>`)
                 }
                 else if (parseInt(data.jobStatus) === 2) {
-                    jobStatusText = "Confirmation Needed"
+                    jobStatusText = "Confirmation Needed"   
                     tcostrow = $('<div>')
                     $(tcostrow).html(data.cost)
                     $(tcostrow).attr('class', 'cell jobcostC')
