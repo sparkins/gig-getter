@@ -90,45 +90,49 @@ module.exports = function (app) {
             req.session.user_id = results[0].id;
             req.session.email = results[0].email;
             req.session.username = results[0].username;
-            if (req.session.isABusiness === 1) {
-              res.render("businesshome", { connected: req.session.username, user: results[0] });
+            if (req.session.isABusiness === 1){
+              res.render('businesshome.handlebars', {connected: req.session.username, user: results[0]});
+
+              // app.get('business-home', function(req, res){
+              //   res.render('businesshome.handlebars', {connected: req.session.username, user:results[0]})
+              // })
 
               app.get('/business-edit', function (req, res) {
-                res.render('business-edit.handlebars', { connected: req.session.username, user: results[0] });
+                res.render('business-edit.handlebars', {connected: req.session.username, user: results[0] });
               })
               app.get('/business-search', function (req, res) {
-                res.render('business-search.handlebars', { connected: req.session.username, user: results[0] });
+                res.render('business-search.handlebars', {connected: req.session.username, user: results[0] });
               })
               app.get('/business-reviews', function (req, res) {
-                res.render('business-reviews.handlebars', { connected: req.session.username, user: results[0] });
+                res.render('business-reviews.handlebars', {connected: req.session.username, user: results[0] });
               })
               app.get('/business-home', function (req, res) {
-                res.render('businesshome.handlebars', { connected: req.session.username, user: results[0] });
+                res.render('businesshome.handlebars', {connected: req.session.username, user: results[0] });
               })
+              
 
-
-              //console.log(results[0])
-            } else
-              res.render("userhome", { connected: req.session.username, user: results[0] })
+            //console.log(results[0])
+          }else
+              res.render("userhome.handlebars", { connected: req.session.username, user: results[0] })
 
             app.get('/user-edit', function (req, res) {
-              res.render('user-edit.handlebars', { connected: req.session.username, user: results[0] });
+              res.render('user-edit.handlebars', {connected: req.session.username, user: results[0] });
             })
 
             app.get('/user-search', function (req, res) {
-              res.render('user-search.handlebars', { connected: req.session.username, user: results[0] });
+              res.render('user-search.handlebars', {connected: req.session.username, user: results[0] });
             })
 
             app.get('/user-review', function (req, res) {
-              res.render('user-review.handlebars', { connected: req.session.username, user: results[0] });
+              res.render('user-review.handlebars', {connected: req.session.username, user: results[0] });
             })
 
             app.get('/user-business', function (req, res) {
-              res.render('user-business.handlebars', { connected: req.session.username, user: results[0] });
+              res.render('user-business.handlebars', {connected: req.session.username, user: results[0] });
             })
 
             app.get('/user-home', function (req, res) {
-              res.render('userhome.handlebars', { connected: req.session.username, user: results[0] });
+              res.render('userhome.handlebars', {connected: req.session.username, user: results[0] });
             })
 
           }
@@ -143,65 +147,11 @@ module.exports = function (app) {
   // logout
   app.get('/logout', function (req, res) {
     req.session.destroy(function (err) {
-      if (err) throw err;
+      if(err) throw err;
       res.render("home");
     })
   });
 
-  // Edit User name
-  app.post("/editusername", function (req, res) {
-    connection.query("update users  set username = (?) where userId = (?)", [req.body.username, req.body.userId], function (err, results, fields) {
-      if (err) {
-        res.status(500).send('Ooop!... Something went wrong ');
-      }
-      else {
-        if (results.changedRows === 1)
-          res.status(500).send(' user name updated successfully');
-        else
-          res.status(500).send(' You did not changed user name ');
-      }
-    })
-  })
-
-  // edit email address
-  app.post("/editemail", function (req, res) {
-    connection.query("update users  set email = (?) where userId = (?)", [req.body.email, req.body.userId], function (err, results, fields) {
-      if (err) {
-        res.status(500).send('Ooop!... Something went wrong ');
-      }
-      else {
-        if (results.changedRows === 1)
-          res.status(500).send(' email address updated successfully');
-        else
-          res.status(500).send(' You did not changed email address');
-      }
-    })
-  })
-
-  // Change password
-  app.post("/changepassword", function (req, res) {
-    console.log(req.body.currentpassword);
-    console.log(req.body.newpassword)
-    connection.query('SELECT * FROM users WHERE userId = ?', [req.body.userId], function (error, results, fields) {
-      bcrypt.compare(req.body.currentpassword, results[0].password_hash, function (err, result) {
-      if (result == true) 
-      {
-      bcrypt.genSalt(10, function (err, salt) {
-          bcrypt.hash(req.body.newpassword, salt, function (err, p_hash) {
-            connection.query("update users  set password_hash = (?) where userId = (?)", [p_hash, req.body.userId], function (err, results, fields) {
-                if (results.changedRows === 1)
-                  res.status(500).send(' password Changed successfully');
-            })
-          })
-      })
-      }
-      else 
-      {
-          res.status(500).send('Error... Invalid Current Password ');
-      }
-      })
-    })
-  })
   // *************************************
   // ********** BUSINESS ROUTES **********
   // *************************************
@@ -355,18 +305,6 @@ module.exports = function (app) {
       })
   })
 
-  //Post route to update a job and add a rating and review
-  app.post('/jobs/add-review/:jobId', function (req, res) {
-    connection.query("UPDATE jobs SET rating = ?, review = ? WHERE jobId = ?", [req.body.rating, req.body.review, req.params.jobId]
-      , function (error, results) {
-        console.log(results);
-        if (error) throw error;
-        console.log ("New review added for " + req.params.jobId);
-        res.render('userhome.handlebars', {connected: req.session.username, user: results[0] });
-
-      })
-  })
-
   // *************************************
   // ************ JOBS ROUTES ************
   // *************************************
@@ -382,16 +320,14 @@ module.exports = function (app) {
   })
 
   // put route to update a job with a QUOTE from the business
-  app.post('/jobs/quote/:jobId', function (req, res) {
-    connection.query("UPDATE jobs SET cost = ?, jobStatus = 2 WHERE jobId = ?", [req.body.newquote, req.params.jobId]
+  app.put('/jobs/quote/:cost/:jobId', function (req, res) {
+    connection.query("UPDATE jobs SET cost = ?, jobStatus = 2 WHERE jobId = ?", [req.params.cost, req.params.jobId]
       , function (error, results) {
         console.log(results);
         if (error) throw error;
-        console.log("Updated Job #" + req.params.jobId + " with quote for $" + req.body.newquote);
-        // res.json("Updated Job #" + req.params.jobId + " with quote for $" + req.body.newquote);
+        res.json("Updated Job #" + req.params.jobId + " with quote for $" + req.params.cost);
       })
   })
-
 
   // put route to update a job when the user ACCEPTS the job
   app.put('/jobs/accept-job/:jobId', function (req, res) {
