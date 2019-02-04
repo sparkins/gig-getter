@@ -41,33 +41,15 @@ module.exports = function (app) {
   })
 
 
-// Creating routes to view each page so I can work on them -Alyssa
+//Creating routes to view each page so I can work on them -Alyssa
 
-// app.get('/userhome', function(req, res){
-//   res.render(path.join(__dirname, '/../views/userhome.handlebars'));
-// })
+app.get('/userhome', function(req, res){
+  res.render(path.join(__dirname, '/../views/userhome.handlebars'));
+})
 
-// app.get('/user-edit', function(req, res){
-//   res.render(path.join(__dirname, '/../views/user-edit.handlebars'+{connected:req.session.username}));
-// })
-
-// app.get('/user-search', function (req, res) {
-//   res.render('user-search.handlebars', {connected: req.session.username, user: results[0]});
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get('/user-edit', function(req, res){
+  res.render(path.join(__dirname, '/../views/user-edit.handlebars'+{connected:req.session.username}));
+})
 
 
 }

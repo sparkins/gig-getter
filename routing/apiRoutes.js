@@ -4,8 +4,6 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var path = require('path');
 
-// var mysql = require('mysql');
-var connection = require('../controllers/connections.js');
 
 var bcrypt = require('bcryptjs');
 
@@ -85,52 +83,54 @@ module.exports = function (app) {
       }
       else {
         bcrypt.compare(req.body.password, results[0].password_hash, function (err, result) {
-          if (result == true) {
-            req.session.isABusiness = results[0].isABusiness;
-            req.session.user_id = results[0].id;
-            req.session.email = results[0].email;
-            req.session.username = results[0].username;
-            if (req.session.isABusiness === 1) {
-              res.render("businesshome", { connected: req.session.username, user: results[0] });
+          if (result == true) 
+          {
+                req.session.isABusiness = results[0].isABusiness;
+                req.session.user_id = results[0].id;
+                req.session.email = results[0].email;
+                req.session.username = results[0].username;
+                if (req.session.isABusiness === 1) 
+                {
+                  res.render("businesshome", {connected: req.session.username,user: results[0]});
+                
+                  app.get('/business-edit', function (req, res) {
+                    res.render('business-edit.handlebars', { connected: req.session.username, user: results[0] });
+                  })
+                  app.get('/business-search', function (req, res) {
+                    res.render('business-search.handlebars', { connected: req.session.username, user: results[0] });
+                  })
+                  app.get('/business-reviews', function (req, res) {
+                    res.render('business-reviews.handlebars', { connected: req.session.username, user: results[0] });
+                  })
+                  app.get('/business-home', function (req, res) {
+                    res.render('businesshome.handlebars', { connected: req.session.username, user: results[0] });
+                  })
 
-              app.get('/business-edit', function (req, res) {
-                res.render('business-edit.handlebars', { connected: req.session.username, user: results[0] });
-              })
-              app.get('/business-search', function (req, res) {
-                res.render('business-search.handlebars', { connected: req.session.username, user: results[0] });
-              })
-              app.get('/business-reviews', function (req, res) {
-                res.render('business-reviews.handlebars', { connected: req.session.username, user: results[0] });
-              })
-              app.get('/business-home', function (req, res) {
-                res.render('businesshome.handlebars', { connected: req.session.username, user: results[0] });
-              })
+                }
+            else
+                {
+                    res.render("userhome", { connected: req.session.username, user: results[0] })
+                  
+                    app.get('/user-edit', function (req, res) {
+                    res.render('user-edit.handlebars', { connected: req.session.username, user: results[0] });
+                  })
 
+                  app.get('/user-search', function (req, res) {
+                    res.render('user-search.handlebars', { connected: req.session.username, user: results[0] });
+                  })
 
-              //console.log(results[0])
-            } else
-              res.render("userhome", { connected: req.session.username, user: results[0] })
+                  app.get('/user-review', function (req, res) {
+                    res.render('user-review.handlebars', { connected: req.session.username, user: results[0] });
+                  })
 
-            app.get('/user-edit', function (req, res) {
-              res.render('user-edit.handlebars', { connected: req.session.username, user: results[0] });
-            })
+                  app.get('/user-business', function (req, res) {
+                    res.render('user-business.handlebars', { connected: req.session.username, user: results[0] });
+                  })
 
-            app.get('/user-search', function (req, res) {
-              res.render('user-search.handlebars', { connected: req.session.username, user: results[0] });
-            })
-
-            app.get('/user-review', function (req, res) {
-              res.render('user-review.handlebars', { connected: req.session.username, user: results[0] });
-            })
-
-            app.get('/user-business', function (req, res) {
-              res.render('user-business.handlebars', { connected: req.session.username, user: results[0] });
-            })
-
-            app.get('/user-home', function (req, res) {
-              res.render('userhome.handlebars', { connected: req.session.username, user: results[0] });
-            })
-
+                  app.get('/user-home', function (req, res) {
+                    res.render('userhome.handlebars', { connected: req.session.username, user: results[0] });
+                  })
+                }
           }
           else {
             res.status(500).send('Invalid password... ');
@@ -140,14 +140,7 @@ module.exports = function (app) {
     })
   });
 
-  // logout
-  app.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
-      if (err) throw err;
-      res.render("home");
-    })
-  });
-
+ 
   // Edit User name
   app.post("/editusername", function (req, res) {
     connection.query("update users  set username = (?) where userId = (?)", [req.body.username, req.body.userId], function (err, results, fields) {
@@ -202,6 +195,15 @@ module.exports = function (app) {
       })
     })
   })
+
+   // logout
+   app.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+      if (err) throw err;
+      res.render("home");
+    })
+  });
+
   // *************************************
   // ********** BUSINESS ROUTES **********
   // *************************************
